@@ -296,7 +296,7 @@ Die Funktion ``format()`` formattiert Zahlen und Zeichenketten.
 frozenset()
 ^^^^^^^^^^^
 
-Die Funktion ``frozenset()`` 
+Die Funktion ``frozenset()``
 
 .. index:: getattr()
 .. _getattr():
@@ -304,7 +304,7 @@ Die Funktion ``frozenset()``
 getattr()
 ^^^^^^^^^
 
-Die Funktion ``getattr()`` 
+Die Funktion ``getattr()``
 
 .. index:: globals()
 .. _globals():
@@ -322,7 +322,7 @@ globalen, das heißt programmweit sichtbaren Variablen.
 hasattr()
 ^^^^^^^^^
 
-Die Funktion ``hasattr()`` 
+Die Funktion ``hasattr()``
 
 .. index:: hash()
 .. _hash():
@@ -330,7 +330,7 @@ Die Funktion ``hasattr()``
 hash()
 ^^^^^^
 
-Die Funktion ``hash()`` 
+Die Funktion ``hash()``
 
 .. index:: help()
 .. _help():
@@ -338,7 +338,7 @@ Die Funktion ``hash()``
 help()
 ^^^^^^
 
-Die Funktion ``help()`` 
+Die Funktion ``help()``
 
 .. index:: hex()
 .. _hex():
@@ -358,7 +358,7 @@ eingeleitet, gefolgt von der eigentlichen Binärzahl; beispielsweise ergibt
 id()
 ^^^^
 
-Die Funktion ``id()`` 
+Die Funktion ``id()``
 
 .. index:: input()
 .. _input():
@@ -399,7 +399,7 @@ schlichtweg ignoriert, beispielsweise ergibt ``int(3.7)`` den Wert ``3``.
 isinstance()
 ^^^^^^^^^^^^
 
-Die Funktion ``isinstance()`` 
+Die Funktion ``isinstance()``
 
 .. index:: issubclass()
 .. _issubclass():
@@ -407,7 +407,7 @@ Die Funktion ``isinstance()``
 issubclass()
 ^^^^^^^^^^^^
 
-Die Funktion ``issubclass()`` 
+Die Funktion ``issubclass()``
 
 .. index:: iter()
 .. _iter():
@@ -415,7 +415,7 @@ Die Funktion ``issubclass()``
 iter()
 ^^^^^^
 
-Die Funktion ``iter()`` 
+Die Funktion ``iter()``
 
 .. index:: len()
 .. _len():
@@ -434,7 +434,7 @@ Zeichenkette die einzelnen Textzeichen, aus denen die Zeichenkette besteht.
 list()
 ^^^^^^
 
-Die Funktion ``list()`` 
+Die Funktion ``list()``
 
 .. index:: locals()
 .. _locals():
@@ -695,7 +695,7 @@ Die Funktion ``super()``
 tuple()
 ^^^^^^^
 
-Die Funktion ``tuple()`` 
+Die Funktion ``tuple()``
 
 .. index:: type()
 .. _type():
@@ -703,7 +703,7 @@ Die Funktion ``tuple()``
 type()
 ^^^^^^
 
-Die Funktion ``type()`` 
+Die Funktion ``type()``
 
 .. index:: vars()
 .. _vars():
@@ -711,7 +711,7 @@ Die Funktion ``type()``
 vars()
 ^^^^^^
 
-Die Funktion ``vars()`` 
+Die Funktion ``vars()``
 
 .. index:: zip()
 .. _zip():

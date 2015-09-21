@@ -3,7 +3,7 @@
 ===========================================
 
 Die Matplotlib ist die umfangreichste Bibliothek in Python, um verschiedene
-Diagrammtypen wie Linien-, Stab- oder Kuchendiagramme, Histogramme, Boxplots, 
+Diagrammtypen wie Linien-, Stab- oder Kuchendiagramme, Histogramme, Boxplots,
 Kontourdiagramme, aber auch dreidimensionale Diagramme und Funktionenplots zu
 erstellen.
 

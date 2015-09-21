@@ -23,7 +23,7 @@ Shell ohne weitere Parameter auf:
 
     python3
 
-Nach dem Eingabeprompt ``>>>`` kann beliebiger Python-Code eingegeben werden.
+Nach dem Eingabe-Prompt ``>>>`` kann beliebiger Python-Code eingegeben werden.
 Drückt man die Enter-Taste, so wird dieser unmittelbar ausgeführt. So lässt sich
 der Python-Interpreter beispielsweise als besserer Taschenrechner benutzen: [#]_
 
@@ -42,7 +42,7 @@ Möchte man ausführlicher im interaktiven Modus arbeiten, so lohnt es sich,
 :ref:`Ipython zu installatieren <Installation von Ipython3>` und ``ipython3``
 als Shell-Version beziehungsweise ``ipython3 qtconsole`` als GUI-Version
 aufzurufen. Beide Varianten von Ipython bieten Vervollständigungen der Eingabe
-durch Drücken der Tab-Taste, die GUI-Version beitet zudem Syntax-Highlighting
+durch Drücken der Tab-Taste, die GUI-Version bietet zudem Syntax-Highlighting
 und ein automatisches Einblenden von Funktionsbeschreibungen (":ref:`Docstrings
 <Docstring>`").
 

@@ -1160,14 +1160,14 @@ mehrzeilige) Zeichenkette in die Datei geschrieben werden:
     myfile.write('Hallo Welt!\n')
 
 Am Ende eines Schreibzugriffs *muss* die Datei mittels ``close(myfile)`` wieder
-geschlossen werden, da nur dann das Datei-Attribug ``mtime``
+geschlossen werden, da nur dann das Datei-Attribut ``mtime``
 ("Modifikationszeit") korrekt gesetzt wird.
 
 Da während des Einlesens oder Schreibens von Dateien prinzipiell auch mit
 Fehlern gerechnet werden muss, müsste stets mittels ``try..except..finally`` ein
 Ausnahme-Handling eingebaut werden. Eine (bessere) Alternative hierzu
 beziehungsweise zum manuellen Schließen eines ``file``-Objekts besteht darin,
-ein ``with``-Statement mit folgender Syntax zu verwenden: 
+ein ``with``-Statement mit folgender Syntax zu verwenden:
 
 .. code-block:: python
 

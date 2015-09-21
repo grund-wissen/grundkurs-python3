@@ -209,7 +209,7 @@ Eine ``for``-Schleife hat allgemein folgende Syntax:
 
 Ein iterierbares Objekt kann beispielsweise eine Liste, ein Tupel, oder auch ein
 String sein. Im einfachsten Fall kann auch mittels der Funktion :ref:`range()
-<range()>` ein iterierbarers Objekt mit bestimmter Länge erzeugt werden:
+<range()>` ein iterierbares Objekt mit bestimmter Länge erzeugt werden:
 
 .. code-block:: python
 

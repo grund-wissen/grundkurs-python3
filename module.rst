@@ -179,7 +179,7 @@ beispielsweise ``import modulname as m``; in diesem Fall kann das Modul mittels
 Pakete
 ------
 
-Mehrere zusammengehoerende Module können in Python weiter in so genannten
+Mehrere zusammengehörende Module können in Python weiter in so genannten
 Paketen zusammengefasst werden. Ein Paket besteht dabei aus einem einzelnen
 Ordner, der mehrere Module (``.py``-Dateien) sowie stets eine Date
 ``__init__.py`` enthält. Diese Datei, die auch leer sein darf, enthält Code, der

@@ -26,7 +26,7 @@ folgendermaßen installiert werden:
     aptitude install python3-setuptools
 
 	easy_install3 -U Sphinx
-	
+
 Anschließend kann das Repository heruntergeladen werden:
 
 .. code-block:: bash

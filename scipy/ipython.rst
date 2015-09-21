@@ -23,7 +23,7 @@ Navigationshilfen
 -----------------
 
 Ipython bietet gegenüber dem normalen Python-Interpreter neben einem
-automatischen Syntax-Highlighting auch weitere 
+automatischen Syntax-Highlighting auch weitere
 
 .. rubric:: Tab-Vervollständigung
 
