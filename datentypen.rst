@@ -42,9 +42,9 @@ aussehen:
 .. code-block:: python
 
     if var_1 is None:
-        print("var_1 has no value.")
+        print('var_1 has no value.')
     else:
-        print("the value of var_1 is " var_1)
+        print('the value of var_1 is ' var_1)
 
 Mittels des Schlüsselworts ``is`` wird im obigen Beispiel überprüft, ob
 ``var_1`` eine Instanz des Typs ``None`` ist. Durch ``if var_1 is not None``
@@ -225,8 +225,8 @@ ermöglichen.
 
 .. code-block:: python
 
-    string_1 = "Hallo"
-    string_2 = "Welt!"
+    string_1 = 'Hallo'
+    string_2 = 'Welt!'
     string_3 = str(539)     # Ergebnis: '539'
 
 Zeichenketten können mittels ``+`` miteinander kombiniert werden. Möchte man
@@ -238,18 +238,18 @@ Zeichenkette bleibt jeweils unverändert:
 
 .. code-block:: python
 
-    string_1 + " " + string_2
-    # Ergebnis: "Hallo Welt!"
+    string_1 + ' ' + string_2
+    # Ergebnis: 'Hallo Welt!'
 
     string_1 * 3
-    # Ergebnis: "HalloHalloHallo"
+    # Ergebnis: 'HalloHalloHallo'
 
 Die Länge einer Zeichenkette kann mittels ``len()`` bestimmt
 werden:
 
 .. code-block:: python
 
-    len("Hallo Welt")
+    len('Hallo Welt')
     # Ergebnis: 10
 
 
@@ -260,8 +260,8 @@ Zeile-Fortsetzungs-Zeichen abgeschlossen wird:
 
 .. code-block:: python
 
-    long_string = "Das ist eine lange Zeichenkette, die für eine bessere \
-                   Lesbarkeit über zwei Zeilen verteilt geschrieben wird."
+    long_string = 'Das ist eine lange Zeichenkette, die für eine bessere \
+                   Lesbarkeit über zwei Zeilen verteilt geschrieben wird.'
 
 Durch den Backslash werden also beide Zeilen zu einer logischen Einheit
 verbunden; hinter dem Backslash darf allerdings kein Kommentarzeichen stehen.
@@ -305,7 +305,7 @@ Zeichenketten können allgemein folgende Sonderzeichen beinhalten:
 
 Möchte man das Interpretieren der obigen Sonderzeichen unterbinden, kann dies
 durch ein vorangestelltes ``r`` ("raw") geschehen; beispielsweise wird in
-``r"a\tb"`` das ``\t`` nicht als Tabulator-Zeichen interpretiert.
+``r'a\tb'`` das ``\t`` nicht als Tabulator-Zeichen interpretiert.
 
 ..  ord('\n') Ergebnis: 10 Ascii-Code
 
@@ -323,7 +323,7 @@ Index als ``n-1`` löst einen Fehler (``IndexError``) aus.
 
 .. code-block:: python
 
-    example = "Hallo Welt"
+    example = 'Hallo Welt'
 
     # Erstes und zweites Zeichen:
 
@@ -368,7 +368,7 @@ ausgewählt werden soll:
 .. code-block:: python
 
     example[::2]
-    # Ergebnis: "Hlo"
+    # Ergebnis: 'Hlo'
 
 Wird für die Schrittweite ein negativer Wert angegeben, so wird der String von
 hinten nach vorne abgearbeitet.
@@ -386,15 +386,15 @@ Für Zeichenketten gibt es in Python einige Funktionen, die in der Form
 
 Da Zeichenketten unveränderbar sind, kann der Index-Operator nicht auf der
 linken Seite des Zuweisungsoperators ``=`` stehen; beispielsweise würde die
-Eingabe von ``example[0:5] = "Salut"`` einen ``TypeError`` erzeugen. Um eine
+Eingabe von ``example[0:5] = 'Salut'`` einen ``TypeError`` erzeugen. Um eine
 solche Veränderung vorzunehmen, kann jedoch beispielsweise die speziell für
 Zeichenketten definierte ``replace()``-Funktion genutzt werden, und der daraus
 resultierende String wieder der ursprünglichen Variable zugewiesen werden:
 
 .. code-block:: python
 
-    # "Hallo" durch "Salut" ersetzen:
-    example = example.replace("Hallo", "Salut")
+    # 'Hallo' durch 'Salut' ersetzen:
+    example = example.replace('Hallo', 'Salut')
 
 Statt ``Hallo`` könnte im obigen Beispiel wiederum ``example[0:5]`` geschrieben
 werden. Um zu prüfen, ob und an welcher Stelle ein Teilstring in einer
@@ -402,10 +402,10 @@ Zeichenkette enthalten ist, kann die String-Funktion ``find()`` genutzt werden:
 
 .. code-block:: python
 
-    example.find("Welt")
+    example.find('Welt')
     # Ergebnis: 6
 
-Der Teilstring ``"Welt"`` ist also ab der Index-Position ``6`` im
+Der Teilstring ``'Welt'`` ist also ab der Index-Position ``6`` im
 Beispiel-String enthalten. Wird der gesuchte String im Zielstring nicht
 gefunden, liefert die ``find()``-Funktion den Wert ``-1`` als Ergebnis.
 
@@ -421,7 +421,7 @@ Hierfür kann die Funktion ``lower()`` verwendet werden:
 
 .. code-block:: python
 
-    "Hallo".lower() == "hallo"
+    'Hallo'.lower() == 'hallo'
     # Ergebnis: True
 
 Die Funktion ``upper()``, wandelt in umgekehrter Weise alle Buchstaben einer
@@ -478,8 +478,8 @@ werden. Dies funktioniert der "klassischen" Methode nach (wie etwa in :ref:`C
 
     var = 5829
 
-    "Der Wert von var ist %s." % var
-    # Ergebnis: "Der Wert von var ist 5829."
+    'Der Wert von var ist %s.' % var
+    # Ergebnis: 'Der Wert von var ist 5829.'
 
 Sollen an mehreren Stellen Ersetzungen vorgenommen werden, werden die
 Platzhalter in der gleichen Reihenfolge durch die Elemente eines gleich langen
@@ -490,10 +490,10 @@ Variablen-Tupels ersetzt:
     var_1 = 8913
     var_2 = 7824
 
-    print("Der Wert von var_1 ist %s, \
-           der Wert von var_2 ist %s" % (var_1, var_2) )
+    print('Der Wert von var_1 ist %s, \
+           der Wert von var_2 ist %s' % (var_1, var_2) )
 
-    # Ergebnis: "Der Wert von var_1 ist 8913, der Wert von var_2 ist 7824."
+    # Ergebnis: 'Der Wert von var_1 ist 8913, der Wert von var_2 ist 7824.'
 
 Nach der neueren, mehr pyton-artigen Variante können Ersetzungen in
 Zeichenketten auch mittels der Funktion ``format()`` vorgenommen werden:
@@ -504,11 +504,11 @@ Zeichenketten auch mittels der Funktion ``format()`` vorgenommen werden:
     var_1 = 8913
     var_2 = 7824
 
-    print( "Der Wert von var ist {}.\n".format(var) )
-    # Ergebnis: "Der Wert von var ist 5829."
+    print( 'Der Wert von var ist {}.\n'.format(var) )
+    # Ergebnis: 'Der Wert von var ist 5829.'
 
-    print( "Der Wert von var_1 ist {}, \
-            der Wert von var_2 ist {}.\n".format(var_1, var_2) )
+    print( 'Der Wert von var_1 ist {}, \
+            der Wert von var_2 ist {}.\n'.format(var_1, var_2) )
 
 In diesem Fall werden die geschweiften Klammern innerhalb der Zeichenkette als
 Platzhalter angesehen und durch die als Argumente der Funktion ``format()``
@@ -545,6 +545,8 @@ Tupeln unveränderbar sind. [#]_ Tupel können genutzt werden, um die Datensiche
 bestimmter Variablen, die an verschiedenen Stellen eines Programms genutzt
 werden, zu gewährleisten; im allgemeinen werden jedoch bevorzugt Listen
 genutzt.
+
+.. index:: in
 
 Mittels der Schlüsselwörter ``in`` beziehungsweise ``not in`` kann geprüft
 werden, ob ein Objekt in einer Liste enthalten ist oder nicht:
@@ -622,12 +624,12 @@ hintereinander angewendet werden:
 
     liste_3 = [ ['a','b','c'], ['d','e','f'], ['g','h','i'] ]
 
-    # Zweites Listenelement ("Zeile") auswählen:
+    # Zweites Listenelement ('Zeile') auswählen:
 
     liste_3[1]
     # Ergebnis: ['d','e','f']
 
-    # Drittes Element ("Spalte") dieser Zeile auswählen:
+    # Drittes Element ('Spalte') dieser Zeile auswählen:
     liste_3[1][2]
     # Ergebnis: 'f'
 
@@ -760,10 +762,10 @@ Mittels ``insert(indexnummer, element)`` kann ein neues Element
 .. code-block:: python
 
     # Neues Element vor dem dritten Element (Index 2) einfügen:
-    liste_1.insert(2, "Hallo")
+    liste_1.insert(2, 'Hallo')
 
     liste_1
-    # Ergebnis: [1, 2, "Hallo", 3]
+    # Ergebnis: [1, 2, 'Hallo', 3]
 
 
 Mittels ``remove(element)`` oder ``pop(indexnummer)`` können Elemente wieder aus
@@ -771,8 +773,8 @@ der Liste entfernt werden:
 
 .. code-block:: python
 
-    # Element "Hallo" aus Liste entfernen:
-    liste_1.remove("Hallo")
+    # Element 'Hallo' aus Liste entfernen:
+    liste_1.remove('Hallo')
 
     # Drittes Element entfernen:
     liste_1.pop(2)
@@ -943,8 +945,8 @@ paarweise je zwei Sets können -- entsprechend den Regeln der :ref:`Mengenlehre
 
 .. code-block:: python
 
-    set_1 = {"a", "b", "c", 1, 2, 3}    # oder: set( ["a", "b", "c", 1, 2, 3] )
-    set_2 = {"b", "c", "d", 2, 3, 4}
+    set_1 = {'a', 'b', 'c', 1, 2, 3}    # oder: set( ['a', 'b', 'c', 1, 2, 3] )
+    set_2 = {'b', 'c', 'd', 2, 3, 4}
 
     # Schnittmenge:
 
@@ -978,10 +980,10 @@ Syntax genutzt:
 
 .. code-block:: python
 
-    any_list = ["a", "a", "b", "c", 1, 2, 2, 3]
+    any_list = ['a', 'a', 'b', 'c', 1, 2, 2, 3]
 
     list_with_unique_elements = list(set(any_list))
-    # Ergebnis: ["a", "b", "c", 1, 2, 3]
+    # Ergebnis: ['a', 'b', 'c', 1, 2, 3]
 
 Zum Arbeiten mit Mengen sind zusätzlich folgende Funktionen nützlich:
 
@@ -1097,12 +1099,12 @@ Bearbeitungsmodus angibt:
 
 .. code-block:: python
 
-    myfile = open("file.txt", "r")
+    myfile = open('file.txt', 'r')
 
-Als Bearbeitungsmodus kann ``"r"`` (lesen), ``"w"`` (schreiben) oder ``"rw"``
+Als Bearbeitungsmodus kann ``'r'`` (lesen), ``'w'`` (schreiben) oder ``'rw'``
 (lesen und schreiben) gewählt werden. Sollen binäre Dateien gelesen
 beziehungsweise geschrieben werden, muss an das jeweilige Kürzel ein ``b``
-angehängt werden, beispielsweise bezeichnet ``"rb"`` den Lesemodus einer
+angehängt werden, beispielsweise bezeichnet ``'rb'`` den Lesemodus einer
 binären Datei.
 
 
@@ -1148,18 +1150,33 @@ geöffnet:
 
 .. code-block:: python
 
-    myfile = open("file.txt", "w")
+    myfile = open('file.txt', 'w')
 
 Anschließend kann mittels der Funktion ``write()`` eine (gegebenenfalls auch
 mehrzeilige) Zeichenkette in die Datei geschrieben werden:
 
 .. code-block:: python
 
-    myfile.write("Hallo Welt!\n")
+    myfile.write('Hallo Welt!\n')
 
 Am Ende eines Schreibzugriffs *muss* die Datei mittels ``close(myfile)`` wieder
 geschlossen werden, da nur dann das Datei-Attribug ``mtime``
 ("Modifikationszeit") korrekt gesetzt wird.
+
+Da während des Einlesens oder Schreibens von Dateien prinzipiell auch mit
+Fehlern gerechnet werden muss, müsste stets mittels ``try..except..finally`` ein
+Ausnahme-Handling eingebaut werden. Eine (bessere) Alternative hierzu
+beziehungsweise zum manuellen Schließen eines ``file``-Objekts besteht darin,
+ein ``with``-Statement mit folgender Syntax zu verwenden: 
+
+.. code-block:: python
+
+    with open("file.txt", 'r') as myfile:
+        for line in myfile:
+            print(line)
+
+Mit dieser Variante wird die Datei automatisch geschlossen, auch wenn beim
+Lesen oder Schreiben ein Fehler aufgetreten ist.
 
 ..  seek moves to a new file position.
 
@@ -1191,7 +1208,7 @@ geschlossen werden, da nur dann das Datei-Attribug ``mtime``
 .. [#] Genau genommen sind bei einem Tupel (oder auch einem ``frozenset``) nur
     die Referenzen auf die enthaltenen Objekte unveränderlich. Enthält ein Tupel
     beispielsweise als erstes Argument eine Liste namens ``l``, so kann dieser
-    mittels ``l.insert(0, "Hallo!")`` ein neues Element hinzugefügt werden. Das
+    mittels ``l.insert(0, 'Hallo!')`` ein neues Element hinzugefügt werden. Das
     Tupel ändert sich dabei nicht, da die ID der Liste ``l`` unverändert bleibt.
 
 .. [#] Die Funktionen ``count()`` und ``index()`` sind die einzigen beiden

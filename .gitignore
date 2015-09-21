@@ -5,6 +5,6 @@ _build/
 .hg/
 
 # Ignore this specific file
-grundkurs-c.pdf
+grundkurs-python3.pdf
 .hgignore
 *.log

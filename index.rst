@@ -30,9 +30,9 @@ Grundkurs Python 3
     datentypen.rst
     kontrollstrukturen.rst
     funktionen.rst
-    module.rst
     klassen-und-objektorientierung.rst
-    design-patterns/index.rst
+    module.rst
+    design-patterns.rst
     scipy/index.rst
     anhang.rst
     links.rst

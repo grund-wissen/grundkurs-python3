@@ -1,7 +1,22 @@
+.. _Design Patterns:
+
+Design Patterns
+===============
+
+An dieser Stelle sollen einige hilfreiche Entwurfsmuster ("Design Patterns") und
+ihre Implementierungen in Python 3 vorgestellt werden.
+
+
+Erzeugungsmuster
+----------------
+
+Als Erzeugungsmuster ("creational patterns") werden Entwurfsprinzipien
+bezeichnet, die für das Erstellen neuer Objekte hilfreich sein können.
+
 .. _Singleton:
 
 Singleton
-=========
+^^^^^^^^^
 
 Als Singleton bezeichnet man ein Objekt, das innerhalb eines laufenden Programms
 nur in einer Ausprägung ("Instanz") existieren darf; beispielsweise ist bei
@@ -16,8 +31,7 @@ könnten dabei immer noch mehrere Instanzen des Objekts existieren -- man hätte
 dann zwar das gleiche, aber nicht das selbe Objekt. Zudem soll die Klasse des
 Grundobjekts durch die Erstellung von Unterklassen erweiterbar sein.
 
-Singleton-Klasse
-----------------
+.. rubric:: Singleton-Klasse
 
 In Python kann eine Singleton-Klasse folgendermaßen als Klasse implementiert
 werden:
@@ -62,9 +76,9 @@ Bei der Initiierung eines solchen Objekts wird aufgrund der geerbten
 "Standardeinstellungen") erstellt, falls ein solches noch nicht existiert.
 Ansonsten wird dieses mit all seinen Methoden und Attributen genutzt.
 
+.. _Singleton-Module:
 
-Singleton-Module
-----------------
+.. rubric:: Singleton-Module
 
 Die Initiierung eines Objekts ist stets mit etwas Rechenaufwand verbunden. Soll
 auf ein Singleton häufig und möglichst schnell zugegriffen werden und ist
@@ -80,5 +94,16 @@ Form einer Referenz genutzt werden, kann auf die gewünschten Singleton-Methoden
 unmittelbar mittels ``modul.funktionsname()`` und die gewünschten Attribute
 mittels ``modul.variable`` zugegriffen werden.
 
+.. .. _Strukturmuster:
 
-... to be continued :-) ...
+.. Strukturmuster
+.. --------------
+
+
+.. .. _Verhaltensmuster:
+
+.. Verhaltensmuster
+.. ----------------
+
+
+

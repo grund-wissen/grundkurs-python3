@@ -173,7 +173,7 @@ Dies funktioniert auch, wenn ein Modul mit einer Abkürzung importiert wurde,
 beispielsweise ``import modulname as m``; in diesem Fall kann das Modul mittels
 ``imp.reload(m)`` neu geladen werden.
 
-
+.. index:: Paket
 .. _Pakete:
 
 Pakete
