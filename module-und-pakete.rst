@@ -41,6 +41,9 @@ Das zu importierende Modul muss sich hierbei im Python-Pfad befinden, also
 entweder global installiert oder im aktuellen Verzeichnis enthalten sein.
 Andernfalls ist eine Anpassung der Variablen ``sys.path`` nötig.
 
+.. TODO: Besser: Setuptools mit requirements.txt nutzen, nur installierte Pakete
+    nutzen oder solche, die als (Teil-)Pakete im Projektverzeichnis enthalten sind!
+
 .. TODO Beispiel
 
 .. _Verwendung von Modulen:
@@ -84,29 +87,35 @@ Dabei können auch mehrere Klassen- oder Funktionsnamen jeweils durch ein Komma
 getrennt angegeben werden. Die so importieren Klassen bzw. Funktionen können
 dann direkt aufgerufen werden, als wären sie in der aktuellen Datei definiert.
 
-..
-    .. rubric:: Wechselseitiges Importieren vermeiden
+Es ist auch möglich, mittels ``from modulname import *`` alle Klassen und
+Funktionen eines Moduls zu importieren. Hiervon ist allerdings (zumindest in
+Skript-Dateien) dringend abzuraten, da es dadurch unter Umständen schwer
+nachvollziehbar ist, aus welchem Modul eine später benutzte Funktion stammt.
+Zudem können Namenskonflikte entstehen, wenn mehrere Module gleichnamige
+Funktionen bereitstellen.
 
-    Zwei Python-Dateien ``a.py`` und ``b.py`` können sich nicht gegenseitig
-    importieren -- dies würde zu einer Endlosschleife führen:
+.. .. rubric:: Wechselseitiges Importieren vermeiden
 
-    .. code-block:: python
+.. Zwei Python-Dateien ``a.py`` und ``b.py`` können sich nicht gegenseitig
+.. importieren -- dies würde zu einer Endlosschleife führen:
 
-    ..  # FEHLER-BEISPIEL!!
+.. .. code-block:: python
 
-    ..  # Modul a.py:
+.. ..  # FEHLER-BEISPIEL!!
 
-    ..  import b
+.. ..  # Modul a.py:
 
-    ..  # Modul b.py
+.. ..  import b
 
-    ..  import a
+.. ..  # Modul b.py
 
-    Der Python-Interpreter quittiert in diesem Fall unmittelbar mit einer
-    Fehlermeldung. Um diesen Fehler zu umgehen, hilft nur eine Möglichkeit: Der
-    Code, der von beiden Modulen zugleich benötigt wird, muss in eine weitere
-    Datei ``c.py`` ausgelagert werden; diese kann dann mittels ``import c`` von
-    den beiden Modulen ``a`` und ``b`` importiert werden.
+.. ..  import a
+
+.. Der Python-Interpreter quittiert in diesem Fall unmittelbar mit einer
+.. Fehlermeldung. Um diesen Fehler zu umgehen, hilft nur eine Möglichkeit: Der
+.. Code, der von beiden Modulen zugleich benötigt wird, muss in eine weitere
+.. Datei ``c.py`` ausgelagert werden; diese kann dann mittels ``import c`` von
+.. den beiden Modulen ``a`` und ``b`` importiert werden.
 
 .. _Hilfe zu Modulen:
 
@@ -140,7 +149,7 @@ eingebunden wird, so kann man dies mittels folgender Anweisung erreichen:
 
     if __name__ == __main__:
 
-        # execute this only if the current file is interpreted directly
+        # execute  this  only  if  the  current  file  is  interpreted  directly
 
 Dies ist insbesondere für Mini-Programme nützlich, die wahlweise als
 selbstständiges Programm aufgerufen, oder in ein anderes Programm eingebettet
@@ -181,9 +190,10 @@ Pakete
 
 Mehrere zusammengehörende Module können in Python weiter in so genannten
 Paketen zusammengefasst werden. Ein Paket besteht dabei aus einem einzelnen
-Ordner, der mehrere Module (``.py``-Dateien) sowie stets eine Date
-``__init__.py`` enthält. Diese Datei, die auch leer sein darf, enthält Code, der
-einmalig beim Laden des Paketes ausgeführt wird.
+Ordner, der mehrere Module (``.py``-Dateien) enthält.
+
+.. sowie stets eine Datei ``__init__.py`` enthält. Diese Datei, die auch leer sein
+.. darf, enthält Code, der einmalig beim Laden des Paketes ausgeführt wird.
 
 Ein Programm kann somit in mehrere Teilpakete untergliedert werden, die wiederum
 mittels der ``import``-Anweisung wie Module geladen werden können. Enthält
@@ -227,6 +237,150 @@ folgende Syntax verwendet:
 Mit ``.`` wird dabei der aktuelle Ordner bezeichnet. Ebenso kann ein Modul
 mittels ``from .. import modulname`` aus dem übergeordneten Verzeichnis und
 mittels ``from ... import modulname`` aus dem nochmals übergeordneten
-Verzeichnis importiert werden.
+Verzeichnis importiert werden. Dies ist allerdings nicht in der Hauptdatei
+möglich, mit welcher der Python-Interpreter aufgerufen wurde und die intern
+lediglich den Namen ``__main__`` zugewiesen bekommt: Diese darf nur absolute
+Pfadangaben für Imports enthalten.
+
+
+.. _Empfehlungen für Paket-Strukturen:
+
+.. rubric:: Empfehlungen für Paket-Strukturen
+
+Möchte man selbst ein Paket zu einer Python-Anwendung erstellen, so ist
+etwa folgender Aufbau empfehlenswert: [#]_
+
+.. code-block:: sh
+
+    My_Project/
+    |
+    |- docs
+    |   |- conf.py
+    |   |- index.rst
+    |   |- installation.rst
+    |   |- modules.rst
+    |   |- quickstart.rst
+    |   |- reference.rst
+    |
+    |- my_project/
+    |   |- main.py
+    |   |- ...
+    |
+    |- tests/
+    |   |- test_main.py
+    |   |- ...
+    |
+    |- CHANGES.rst
+    |- LICENSE
+    |- README.rst
+    |- requirements.txt
+    |- setup.py
+    |- TODO.rst
+
+Das Projekt-Verzeichnis sollte den gleichen Namen wie die spätere Anwendung
+haben, allerdings mit einem Großbuchstaben beginnen, um Verwechslungen mit dem
+gleichnamigen Paket-Verzeichnis zu vermeiden. Das Projekt-Verzeichnis sollte
+neben dem eigentlichen Projekt-Paket zumindest noch die Ordner ``docs``, und
+``test`` umfassen, in denen eine Dokumentation des Projekts und zum Programm
+passende :ref:`Tests <unittest>` enthalten sind; zusätzlich kann das Projekt
+einen ``lib``-Ordner mit möglichen C-Erweiterungen enthalten. In manchen
+Projekten werden zudem ausführbare Programm-Dateien (meist ohne die Endung
+``.py``) in einem weiteren Ordner ``bin`` abgelegt; hat ein Programm allerdings
+nur eine einzelne aufrufbare Datei, so kann diese auch im
+Projekt-Hauptverzeichnis abgelegt werden.
+
+Die mit Großbuchstaben benannten Dateien sind selbsterklärend, die Dateien
+``requirements.txt`` und ``setup.py`` sind für die Installationsroutine
+vorgesehen.
+
+.. _Paketinstallation:
+.. _setuptools:
+.. _setup.py:
+
+.. rubric:: Paketinstallation mit ``setuptools`` und ``setup.py``
+
+Das Paket ``setuptools`` aus der Python-Standardbibliothek stellt einige
+Funktionen bereit, die für das Installieren von Python-Paketen hilfreich sind.
+Dazu wird üblicherweise im Projekt eine Datei ``setup.py`` angelegt, die unter
+anderem eine Programmbeschreibung, den Namen und die Emailadresse des Autors,
+Informationen zur Programmversion und zu benötigten Fremdpaketen enthält.
+Zudem können mit der Funktion ``find_packages()`` aus dem ``setuptools``-Paket
+die im Projektverzeichnis enthaltenen Pakete automatisch gefunden und bei Bedarf
+installiert werden.
+
+Python-Entwickler haben das ``setuptools``-Paket oftmals bereits installiert
+(``aptitude install python3-setuptools``), da es für das zusätzliche
+Installieren von weiteren Paketen mittels ``pip3 install paketname`` oder
+``easy_install3 paketname`` hilfreich ist. Soll allerdings sichergestellt sein,
+dass auch bei Anwendern das ``setuptools``-Paket installiert ist oder bei Bedarf
+nachinstalliert wird, kann die Datei `ez_install.py
+<https://bootstrap.pypa.io/ez_setup.py>`_ von der Projektseite heruntergeladen
+und in das eigene Projektverzeichnis kopiert werden. In der Datei ``setup.py``
+sind dann üblicherweise folgende Routinen vorhanden:
+
+.. code-block:: python
+
+    try:
+        from setuptools import setup, find_packages
+    except ImportError:
+        import ez_setup
+        ez_setup.use_setuptools()
+        from setuptools import setup, find_packages
+
+    import os
+
+    import my_project
+
+    my_project_path = os.path.abspath(os.path.dirname(__file__))
+
+    long_description = 
+    """
+    Eine ausführliche Beschreibung des Programms.
+    """
+
+    setup(
+        name='my_project',
+        version=my_project.__version__,
+        url='http://github.com/my_account/my_project/',
+        license='GPLv3',
+        author='Vorname Nachname',
+        author_email='name@adresse.de',
+        install_requires=[
+            'Flask>=0.10.1',
+            'SQLAlchemy==0.8.2',
+            ],
+        tests_require=['nose'],
+        packages=find_packages(exclude=['tests']),
+        description='Eine kurze Beschreibung.',
+        long_description = long_description,
+        platforms='any',
+        keywords = "different tags here",
+        classifiers = [
+            'Programming Language :: Python',
+            'Development Status :: 4 - Beta',
+            'Natural Language :: English',
+            'Intended Audience :: Developers',
+            'Operating System :: Linux',
+            'Topic :: Software Development :: Libraries :: Application Frameworks',
+            'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
+            ],
+
+        )
+
+.. TODO __init__-Trap...
+
+.. raw:: html
+
+    <hr />
+
+.. only:: html
+
+    .. rubric:: Anmerkungen:
+
+.. [#] Siehe auch `Open Sourcing a Python Project the Right Way
+    <http://www.jeffknupp.com/blog/2013/08/16/open-sourcing-a-python-project-the-right-way/>`_
+    und `Filesystem structure of a Python project
+    <http://as.ynchrono.us/2007/12/filesystem-structure-of-python-project_21.html>`_
+    für weitere Tips.
 
 

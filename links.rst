@@ -29,6 +29,9 @@ Links
 
 .. http://stackoverflow.com/questions/tagged/numpy
 
+.. rubric:: Code-Suche
+
+* `Nullege Python Quellcode-Suchmaschine <http://nullege.com/>`_
 
 .. rubric:: Private Python-Seiten
 

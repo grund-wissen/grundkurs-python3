@@ -169,7 +169,11 @@ zusätzlich so genannte "Getter" und "Setter"-Methoden definiert, deren Aufgabe
 es ist, nach einer Prüfung auf Korrektheit den Wert des entsprechenden Attributs
 auszugeben oder ihm einen neuen Wert zuzuweisen.
 
+.. Geschützte Methoden und Attribute bleiben bei ``from modulname import *``
+.. unberücksichtigt!
+
 .. index:: Property
+.. _Property:
 
 Setter- und Getter-Methoden werden bevorzugt als so genannte "Properties"
 definiert; dazu wird folgende Syntax verwendet:
@@ -239,7 +243,8 @@ mittels ``Instanzname.attributname`` erfolgen:
     MyClass().myattr
     # Ergebnis: 42
 
-.. index:: staticmethod()
+.. index:: staticmethod(), Statische Methode
+.. _Statische Methode:
 
 Statische Methoden werden ebenso wie gewöhnliche Methoden definiert, außer dass
 bei der Definition das ``self`` als erstes Argument weggelassen wird;
@@ -365,10 +370,11 @@ Folgende Member sind für den Vergleich zweier Objekte vorgesehen:
 .. index:: __eq__(), __ne__()
 
 * Mit den Methoden ``__eq__()`` ("equal") und ``__ne__()`` ("not equal") kann
-  festgelegt werden, nach welchen Kriterien sich zwei Objekte verglichen werden
-  sollen, wenn ``obj_1 == obj_2`` beziehungsweise ``obj_1 != obj_2`` aufgerufen
-  wird. Diese Operator-Kurzschreibweise wird intern in ``obj_1.__eq__(obj_2)``
-  übersetzt, es wird also die Equal-Methode des ersten Objekts aufgerufen.
+  festgelegt werden, nach welchen Kriterien zwei Instanzen verglichen werden
+  sollen, wenn ``instanz_1 == instanz_2`` beziehungsweise ``instanz_1 !=
+  instanz_2`` aufgerufen wird. Diese Operator-Kurzschreibweise wird intern in
+  ``instanz_1.__eq__(instanz_2)`` übersetzt, es wird also die Equal-Methode des
+  ersten Objekts aufgerufen.
 
 .. index:: __gt__(), __ge__(), __lt__(), __le__()
 
@@ -385,83 +391,119 @@ Folgende Member sind für den Vergleich zweier Objekte vorgesehen:
 * Mit der Methode ``__hash__()`` wird ein zu der angegebenen Instanz gehörender
   Hash-Wert ausgegeben, der die Instanz als Objekt eindeutig identifiziert.
 
-Folgende Member sind für logische Operationen vorgesehen:
+Folgendes Member ist für logische Operationen vorgesehen:
 
 .. index:: __bool__()
 
 * Mit der Methode ``__bool__()`` wird festgelegt, in welchen Fällen eine Instanz
   den Wahrheitswert ``True`` oder den Wahrheitswert ``False`` zurückgeben soll,
-  wenn ``bool(instanzname)`` aufgerufen wird; dies erfolgt beispielsweise
-  implizit bei :ref:`if <if>`-Bedingungen.
+  wenn ``bool(instanz)`` aufgerufen wird; dies erfolgt beispielsweise implizit
+  bei :ref:`if <if>`-Bedingungen.
 
-* ``__and__()``
-  ``__or__()``
-  ``__xor__()``
-
+.. ``__and__()``
+.. ``__or__()``
+.. ``__xor__()``
 
 Folgende Member sind für numerische Operationen vorgesehen:
 
-* ``__add__()``
-  ``__sub__()``
-  ``__mul__()``
-  ``__truediv__()``
-  ``__floordiv__()``
-  ``__pow__()``
-  ``__mod__()``
-  ``__lshift__()``
-  ``__rshift__()``
+* Mit den Methoden ``__int__()``, ``__oct__()``, ``__hex__()``, ``__float__()``,
+  ``__long__()`` und ``__complex__()`` kann festgelegt werden, wie das Objekt
+  durch einen Aufruf von ``int(instanz)``, ``oct(instanz)`` usw. in den
+  jeweiligen numerischen Datentyp umzuwandeln ist.
 
-* ``__pos__()``
-  ``__neg__()``
-  ``__abs__()``
-  ``__inv__()``
-  ``__round__()``
+* Mit den Methoden ``__pos__()`` und ``__neg__()`` kann festgelegt werden,
+  welche Ergebnisse die unären Operatoren ``+instanz`` beziehungsweise
+  ``-instanz`` liefern sollen; zusätzlich kann mit der Methode ``__abs__()``
+  (Absolut-Betrag) festgelegt werden, welches Ergebnis ein Aufruf von
+  ``abs(instanz)`` liefern soll. Ebenso wird durch die Methoden ``__round__()``
+  (Rundung) bestimmt, welches Ergebnis beim Aufruf von ``round(instanz)`` bzw.
+  ``round(instanz, num)`` zu erwarten ist.
 
-* ``__int__()``
-  ``__oct__()``
-  ``__hex__()``
-  ``__float__()``
-  ``__long__()``
-  ``__complex__()``
+* Mit den Methoden ``__add__()``, ``__sub__()``, ``__mul__()`` und
+  ``__truediv__()`` wird festgelegt, welches Ergebnis sich bei der Verknüpfung zweier
+  Instanzen mit den vier Grundrechenarten ergeben soll, also ``instanz_1 +
+  instanz_2``, ``instanz_1 - instanz_2``, usw. Zusätzlich wird durch die Methode
+  ``__pow__()`` (Potenzrechnung) festgelegt, welches Ergebnis ``instanz_1 **
+  instanz__2`` liefern soll.
+
+* Mit der Methode ``__floordiv__()`` wird die Bedeutung von ``instanz_1 //
+  instanz_2``  festgelegt; bei normalen Zahlen wird damit derjenige ``int``-Wert
+  bezeichnet, der kleiner oder gleich dem Ergebnis der Division ist
+  (beispielsweise ergibt ``5 // 3`` den Wert ``1``, und ``-5 // 3`` den Wert
+  ``-2``). Zudem wird durch die Methode ``__mod__()`` (Modulo-Rechnung) die
+  Bedeutung von ``instanz_1 % instanz_2`` festgelegt, was bei normalen Zahlen
+  dem ganzzahligen Divisionsrest entspricht.
+
+.. ``__lshift__()``
+.. ``__rshift__()``
 
 Folgende Member sind für Wertzuweisungen vorgesehen:
 
-* ``__iadd__()``
-  ``__isub__()``
-  ``__imul__()``
-  ``__itruediv__()``
-  ``__ifloordiv__()``
-  ``__ipow__()``
-  ``__imod__()``
-  ``__ilshift__()``
-  ``__irshift__()``
+* Mit den Methoden ``__iadd__()``, ``__isub__()``, ``__imul__()`` und
+  ``__itruediv__()`` wird festgelegt, welches Ergebnis sich bei der kombinierten
+  Wertzuweisung zweier Instanzen mit den vier Grundrechenarten ergeben soll,
+  also ``instanz_1 += instanz_2``, ``instanz_1 -= instanz_2``, usw. Zusätzlich
+  wird durch die Methode ``__ipow__()`` (Potenzrechnung) festgelegt, welches
+  Ergebnis ``instanz_1 **= instanz__2`` liefern soll.
 
-Folgende Member sind für Slicings, Container und Iteratoren vorgesehen:
+* Mit der Methode ``__ifloordiv__()`` wird die Bedeutung von ``instanz_1 //=
+  instanz_2``  festgelegt; bei normalen Zahlen wird ``instanz_1`` dabei
+  derjenige Wert zugewiesen, der sich bei der Auswertung von ``instanz_1 //
+  instanz_2`` ergibt. In gleicher Weise wird durch die Methode ``__imod__()``
+  (Modulo-Rechnung) die Bedeutung von ``instanz_1 %= instanz_2`` festgelegt;
+  hierbei erhält ``instanz_1`` als Wert das Ergebnis von ``instanz_1 %
+  instanz_2``.
 
-* ``__len__()``
-  ``__getitem__()``
-  ``__setitem__()``
-  ``__delitem__()``
-  ``__iter__()``
-  ``__reversed__()``
-  ``__contains__()``
-  ``__index__()``
+.. ``__ilshift__()``
+.. ``__irshift__()``
 
+Folgende Member sind für Container, Slicings und Iteratoren vorgesehen:
 
-... to be continued ...
+* Die Methode ``__len__()`` wird aufgerufen, wenn mittels ``len(instanz)`` die
+  Länge eines Containers geprüft werden soll.
 
-.. Objekteigenschaften in gewuenschter Form ``__gt()__``, ``__eq()__``,
-.. ``__lt()__`` als Vergleichsoperatoren, um beispielsweise ein einzelnes
-.. Instanz-Attribut vergleichen; ebenso ``__le()__`` fuer < und ``__ne()__``
-.. fuer !=.
-.. ``__sub__()`` wird aufgerufen, wenn instanz1 - instanz2 eingegeben wird.
-.. Ebenso + ``__add__()``, * ``__mul__()``, ** ``__pow()__``, / ``__truediv()__``, //
-.. ``__floordiv__()``, % ``__mod__()``
+* Die Methode ``__contains__()`` wird aufgerufen, wenn mittels ``element in
+  instanz`` geprüft wird, ob das als Argument angegebene Element im Container
+  enthalten ist.
 
+* Die Methode ``__getitem__()`` wird aufgerufen, wenn mittels ``instanz[key]``
+  der zu dem als Argument angegebenen Schlüssel gehörende Wert abgerufen werden
+  soll.
 
-.. ``__enter__(self)``
-.. ``__exit__(self)`` -> with-Statement
+* Die Methode ``__setitem__()`` wird aufgerufen, wenn mittels ``instanz[key] =
+  value`` dem als erstes Argument angegebenen Schlüssel der als zweites Argument
+  angegebene Wert zugewiesen werden soll 
 
+* Die Methode ``__delitem__()`` wird aufgerufen, wenn mittels ``del
+  instanz[element]`` das als Argument angegebene Element aus dem Contaniner
+  gelöscht werden soll.
+
+.. TODO
+.. * Die Methode ``__iter__()`` 
+.. ``__reversed__()``
+
+Folgende Member sind für die Verwendung des Objekts innerhalb von :ref:`with
+<with>`-Konstrukten vorgesehen:
+
+* Mit der Methode ``__enter__()`` werden Anweisungen definiert, die einmalig
+  ausgeführt werden sollen, wenn eine Instanz der Klasse in eine :ref:`with
+  <with>`-Umgebung geladen wird.
+* Mit der Methode ``__exit__()`` werden Anweisungen definiert, die einmalig
+  ausgeführt werden sollen, wenn eine :ref:`with <with>`-Umgebung um eine
+  Instanz der Klasse wieder verlassen wird.
+
+Mit Hilfe der "Magic Members" können also neue Klassen von Objekten definiert
+werden, deren Verhalten dem von bestehenden Klassen (Zahlen, Listen, usw.)
+ähnelt. Objekte zeichnen sich also weniger durch ihre Bezeichnung, sondern
+vielmehr durch ihre Eigenschaften und Methoden aus. Dieses Konzept wird
+bisweilen auch als "Duck Typing" bezeichnet:
+
+.. epigraph::
+
+    "Wenn ich einen Vogel sehe, der wie eine Ente läuft, wie eine Ente schwimmt
+    und wie eine Ente schnattert, dann nenne ich diesen Vogel eine Ente."
+
+    -- `James Riley <https://de.wikipedia.org/wiki/Duck_Typing>`_
 
 .. index:: Vererbung
 .. _Vererbung:
@@ -505,6 +547,11 @@ Blick erkennbar ist, aus welcher Klasse die abgeleiteten Attribute und Methoden
 ursprünglich stammen, sollte Mehrfach-Vererbung nur in Ausnahmefällen und mit
 Vorsicht eingesetzt werden.
 
+
+.. TODO Dekoratoren, Iteratoren, Generatoren
+
+Generatoren und Iteratoren
+--------------------------
 
 
 

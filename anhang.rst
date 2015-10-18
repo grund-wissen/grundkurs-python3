@@ -296,7 +296,9 @@ Die Funktion ``format()`` formattiert Zahlen und Zeichenketten.
 frozenset()
 ^^^^^^^^^^^
 
-Die Funktion ``frozenset()``
+Die Funktion ``frozenset()`` erzeugt ein neues :ref:`frozenset <Mengen>`-Objekt, also eine
+unveränderliche Menge.
+
 
 .. index:: getattr()
 .. _getattr():
@@ -520,7 +522,9 @@ eingeleitet, gefolgt von der eigentlichen Binärzahl; beispielsweise ergibt
 open()
 ^^^^^^
 
-Die Funktion ``open()``
+Die Funktion ``open()`` gibt ein zum angegebenen Pfad passendes
+:ref:`Datei-Objekt <Dateien>` als Ergebnis zurück, das zum Lesen oder Schreiben
+von Dateien verwendet wird.
 
 .. index:: ord()
 .. _ord():
@@ -528,7 +532,13 @@ Die Funktion ``open()``
 ord()
 ^^^^^
 
-Die Funktion ``ord()``
+Die Funktion ``ord()`` gibt die Unicode-Zahl (ein ``int``-Wert) eines
+angegebenen Zeichens (Buchstabe, Zahl, oder Sonderzeichen) aus;
+beispielsweise gibt ``ord('a')`` als Ergebnis ``97`` zurück.
+
+Für viele Programme reichen die `ASCII-Codes`_ als Teilmenge des
+Unicode-Zeichensatzes bereits aus.
+
 
 .. index:: pow()
 .. _pow():
@@ -536,7 +546,8 @@ Die Funktion ``ord()``
 pow()
 ^^^^^
 
-Die Funktion ``pow()``
+Die Funktion ``pow()`` gibt beim Aufruf von ``pow(x,y)`` den Wert von ``x **
+y``, also ``x`` hoch ``y`` aus (Potenz).
 
 .. index:: print()
 .. _print():
@@ -544,7 +555,9 @@ Die Funktion ``pow()``
 print()
 ^^^^^^^
 
-Die Funktion ``print()``
+Die Funktion ``print()`` gibt Zeichenketten auf dem Bildschirm aus; dabei können
+unter anderem mittels einer geeigneten :ref:`Formatierung <Formatierung von
+Zeichenketten>` auch Werte von Variablen ausgegeben werden.
 
 .. index:: property()
 .. _property():
@@ -552,7 +565,12 @@ Die Funktion ``print()``
 property()
 ^^^^^^^^^^
 
-Die Funktion ``property()``
+Die Funktion ``property()`` wird verwendet, um auf ein Attribut mittels Methoden
+zuzugreifen. Dazu wird in der Klasse des Objekts je eine :ref:`Setter- und
+Getter <Property>`-Methode definiert, die zum Zuweisen und Abrufen des Attributs
+verwendet werden. Anschließend kann mittels ``my_attribute =
+property(fget=getterfunction, fset=setterfunction)`` ein Property-Attribut
+erzeugt werden.
 
 .. index:: range()
 .. _range():
@@ -662,7 +680,11 @@ eine Liste) angewendet werden und gibt dieses in sortierter Reihenfolge zurück.
 staticmethod()
 ^^^^^^^^^^^^^^
 
-Die Funktion staticmethod()
+Die Funktion ``staticmethod()`` kann innerhalb von einer Klasse verwendet
+werden, um eine vorangehend und ohne "self" als erstes Argument definierte
+Methode zu einer :ref:`statische Methode <Statische Methode>` zu deklarieren.
+Derartige Methoden können wahlweise mittels ``klassenname.methode()`` oder auch
+mittels ``instanzname.methode()`` aufgerufen werden.
 
 .. index:: str()
 .. _str():
@@ -670,7 +692,8 @@ Die Funktion staticmethod()
 str()
 ^^^^^
 
-Die Funktion ``str()``
+Die Funktion ``str()`` gibt eine String-Form des als Argument angegebenen Objekts aus.
+
 
 .. index:: sum()
 .. _sum():

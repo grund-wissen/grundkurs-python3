@@ -48,9 +48,10 @@ Nach ihrer Definition kann die Funktion dann folgendermaßen aufgerufen werden:
     function_name(argument_1, argument_2, ...)
 
 Eine Funktion kann, abhängig von ihrer Definition, beim Aufruf kein, ein oder
-auch mehrere Argumente in der jeweiligen Reihenfolge verlangen. Bei jedem
-Aufruf wird dann der Funktions-Code ausgeführt und ein entsprechender
-Ergebniswert zurück gegeben. [#]_
+auch mehrere Argumente in der jeweiligen Reihenfolge verlangen. Bei jedem Aufruf
+wird dann der Funktions-Code ausgeführt und ein entsprechender Ergebniswert
+zurück gegeben; ist im Funktionsblock keine ``return``-Anweisung enthalten, wird
+von der Funktion automatisch der Wert ``None`` zurückgegeben. [#]_
 
 Beim Aufruf der Funktion werden die einzelnen Argumente üblicherweise gemäß
 ihrer Position direkt übergeben, beispielsweise ``argument_1 = 5 ;
@@ -64,9 +65,6 @@ automatisch gedruckte Dokumentation zu erzeugen (beispielsweise :ref:`Sphinx
 <gwl:Sphinx>`) oder um Benutzer interaktive Hilfe anzubieten
 (beispielsweise Ipython). Werden bei einer Funktion Argumente verlangt, so
 sollten diese ebenfalls im Docstring kurz beschrieben werden (Typ, Bedeutung).
-
-Ist im Funktionsblock keine ``return``-Anweisung enthalten, wird von der
-Funktion automatisch der Wert ``None`` zurückgegeben.
 
 .. _Optionale Argumente:
 
@@ -159,8 +157,8 @@ eine Funktion übergeben, so wird ``x``, also eine Referenz auf ``any_object``,
 als Wert übergeben. Welchen Einfluss die Funktion auf das Argument hat, hängt
 dabei vom Objekt-Typ ab:
 
-* Ist ``any_object`` ein veränderliches Objekt, beispielsweise eine Liste oder
-  ein Dict, so kann dieses durch die Funktion direkt verändert werden:
+* Ist ``any_object`` ein veränderliches Objekt, beispielsweise eine Liste, ein
+  Dict oder ein Set, so kann dieses durch die Funktion direkt verändert werden:
 
   .. code-block:: python
 
@@ -309,7 +307,7 @@ von mehreren Stellen aus verändert werden kann, da in diesem Fall nicht immer
 auf den ersten Blick einwandfrei feststellbar ist, von wo aus die Variable
 verändert wurde.
 
-.. TODO: nonlocal
+.. TODO: nichtlokaler Namensraum / nonlocal
 
 
 .. index:: lambda
@@ -435,15 +433,15 @@ ohne das Importieren weiterer :ref:`Module <Module>` unmittelbar verfügbar. Ein
 .. [#] Soll eine Funktion mehrere Ergebnisse liefern, so müssen diese als
     :ref:`Liste <Liste>` oder :ref:`Tupel <Tupel>` zurückgegeben werden.
 
-.. [#] Auf die ``return``-Anweisung kann auch verzichtet werden. Python liefert
-    dann stets ``None`` als Ergebnis zurück.
-
-    In einer Funktionsdefinition können auch, wenn ``if``-Bedingungen in ihr
+.. [#] In einer Funktionsdefinition können auch, wenn ``if``-Bedingungen in ihr
     vorliegen, an mehreren Stellen ``return``-Anweisungen auftreten. Sobald eine
     ``return``-Anweisung erreicht wird, wird die Funktion unmittelbar beendet
     und der jeweilige Ergebniswert zurück gegeben. Steht nur ``return`` (ohne
     expliziten Ergebniswert), so wird ebenfalls der Wert ``None`` zurück
     gegeben.
+
+    Soll eine Funktion mehrere Werte als Ergebnis liefern, so müssen diese als
+    Liste oder Tupel an das Programm zurückgegeben werden.
 
 .. [#] Dass die obige Funktion die Länge der zusätzlichen Zahlenliste zum
     Ergebnis dazu addiert, soll an dieser Stelle nur die Funktionalität der
