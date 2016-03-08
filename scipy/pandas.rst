@@ -10,7 +10,7 @@ definiert:
 
 * Eine ``Series`` entspricht in vielerlei Hinsicht einer "eindimensionalen"
   Liste, beispielsweise einer Zeitreihe, einer Liste, einem Dict, oder einem
-  Numpy-Array.
+  :ref:`Numpy <numpy>` -Array.
 
 * Ein ``Dataframe`` besteht aus einer "zweidimensionalen" Tabelle. Die einzelnen
   Reihen beziehungsweise Spalten dieser Tabelle können wie ``Series``-Objekte

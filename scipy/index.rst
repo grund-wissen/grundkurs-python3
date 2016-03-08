@@ -9,9 +9,9 @@ zusammengefasst, die speziell für wissenschaftliches Arbeiten entwickelt wurden
 .. toctree::
     :maxdepth: 2
 
-    numpy.rst
-    matplotlib.rst
     ipython.rst
+    matplotlib.rst
+    numpy.rst
     pandas.rst
     sympy.rst
     beispiele/index.rst

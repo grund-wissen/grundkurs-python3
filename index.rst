@@ -1,3 +1,4 @@
+.. _Python3:
 .. _Grundkurs Python 3:
 
 Grundkurs Python 3
@@ -31,8 +32,8 @@ Grundkurs Python 3
     kontrollstrukturen.rst
     funktionen.rst
     klassen-und-objektorientierung.rst
-    fehler-und-ausnahmen.rst
     module-und-pakete.rst
+    fehler-und-ausnahmen.rst
     design-patterns.rst
     scipy/index.rst
     anhang.rst

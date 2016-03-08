@@ -218,12 +218,12 @@ bereitstellt, können innerhalb einer Klasse auch Attribute und/oder Methoden
 definiert werden, die für alle Instanzen der Klasse gleichermaßen gelten.
 Derartige Klassenmember werden "statisch" genannt.
 
-Statische Attribute lassen sich erzeugen, indem (üblicherweise gleich am Beginn
-des Klassen-Blocks) die jeweiligen Attribute wie normale Variablen gesetzt
-werden, also ohne vorangestelltes ``self`` und außerhalb einer
-Methoden-Definition. Der Zugriff auf statische Attribute kann dann (sowohl
-lesend als auch schreibend) wahlweise mittels ``Klassenname.attributname`` oder
-mittels ``Instanzname.attributname`` erfolgen:
+Statische Attribute lassen sich erzeugen, indem innerhalb der Klasse
+(üblicherweise gleich zu Beginn des Klassen-Blocks) die gewünschten Attribute
+wie normale Variablen gesetzt werden, also ohne vorangestelltes ``self`` und
+außerhalb einer Methoden-Definition. Der Zugriff auf statische Attribute kann
+dann (sowohl lesend als auch schreibend) wahlweise mittels
+``Klassenname.attributname`` oder mittels ``Instanzname.attributname`` erfolgen:
 
 .. code-block:: python
 
@@ -277,7 +277,7 @@ keine Instanz der Klasse existiert.
 
 .. todo Klassenmethoden
 
-.. index:: Magic Member
+.. index:: Magic Member, Operator-Überladung
 .. _Magic Member:
 
 .. rubric:: "Magic" Member
@@ -494,9 +494,13 @@ Folgende Member sind für die Verwendung des Objekts innerhalb von :ref:`with
 
 Mit Hilfe der "Magic Members" können also neue Klassen von Objekten definiert
 werden, deren Verhalten dem von bestehenden Klassen (Zahlen, Listen, usw.)
-ähnelt. Objekte zeichnen sich also weniger durch ihre Bezeichnung, sondern
-vielmehr durch ihre Eigenschaften und Methoden aus. Dieses Konzept wird
-bisweilen auch als "Duck Typing" bezeichnet:
+ähnelt. Wird einem Operator, beispielsweise dem Plus-Operators ``+``, mittels
+der Funktion ``__add__()`` eine neue, auf den Objekttyp passendere Bedeutung
+zugewiesen, so spricht man auch von "Operator-Überladung".
+
+Objekte zeichnen sich also weniger durch ihre Bezeichnung, sondern vielmehr
+durch ihre Eigenschaften und Methoden aus. Dieses Konzept wird bisweilen auch
+als "Duck Typing" bezeichnet:
 
 .. epigraph::
 
@@ -504,6 +508,13 @@ bisweilen auch als "Duck Typing" bezeichnet:
     und wie eine Ente schnattert, dann nenne ich diesen Vogel eine Ente."
 
     -- `James Riley <https://de.wikipedia.org/wiki/Duck_Typing>`_
+
+Kann eine Funktion umgekehrt auf verschiedene Objekt-Typen angewendet werden, so
+nennt man sie polymorph. Beispielsweise kann die Builtin-Funktion ``sum()`` auf
+beliebige listen-artige Objekttypen angewendet werden, sofern für diese eine
+``__add__()``-Funktion definiert ist. Durch Polymorphismus als Spracheigenschaft
+wird einmal geschriebener Code oftmals auch an einer anderen Stelle verwendbar.
+
 
 .. index:: Vererbung
 .. _Vererbung:
@@ -547,8 +558,22 @@ Blick erkennbar ist, aus welcher Klasse die abgeleiteten Attribute und Methoden
 ursprünglich stammen, sollte Mehrfach-Vererbung nur in Ausnahmefällen und mit
 Vorsicht eingesetzt werden.
 
+.. index:: Dekorator
+.. _Dekoratoren:
+.. _Dekorator:
 
-.. TODO Dekoratoren, Iteratoren, Generatoren
+Dekoratoren
+-----------
+
+Dekoratoren werden in Python als Kurzschreibweise verwendet, um bestimmte,
+innerhalb einer Klasse definierte Methoden mit zusätzlichen Methoden zu
+"umhüllen".
+
+Der wohl typischste Dekorator 
+
+.. _Generatoren und Iteratoren:
+.. _Generator:
+.. _Iterator:
 
 Generatoren und Iteratoren
 --------------------------

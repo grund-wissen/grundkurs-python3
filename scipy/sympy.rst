@@ -4,10 +4,11 @@
 ``sympy`` -- ein Computer-Algebra-System
 ========================================
 
-Sympy `_ ist ein Modul, das ein Computer-Algebra-System für Python bereitstellt.
-Es kann, wenn bei der :ref:`Python-Installation <Installation>` das Paket
-``python3-setuptools`` mit installiert wurde, in einer Shell folgendermaßen
-heruntergeladen installiert werden:
+`Sympy <http://www.sympy.org/en/index.html>`__ ist ein Modul, das ein
+Computer-Algebra-System für Python bereitstellt. Es kann, wenn bei der
+:ref:`Python-Installation <Installation>` das Paket ``python3-setuptools`` mit
+installiert wurde, in einer Shell folgendermaßen heruntergeladen installiert
+werden:
 
 .. code-block:: bash
 

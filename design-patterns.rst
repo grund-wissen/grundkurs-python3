@@ -13,6 +13,92 @@ Erzeugungsmuster
 Als Erzeugungsmuster ("creational patterns") werden Entwurfsprinzipien
 bezeichnet, die für das Erstellen neuer Objekte hilfreich sein können.
 
+Factory
+^^^^^^^
+
+Als "Factories" werden Hilfsobjekte bezeichnet, deren Aufgabe es ist, die
+Erzeugung eines Objekts von seiner Verwendung zu trennen. Man unterscheidet im
+Allgemeinen zwischen zwei verschiedenen Möglichkeiten, dieses Prinzip zu
+implementieren:
+
+* Bei einer "Factory Method" wird ein neues Objekt durch den Aufruf einer
+  Funktion erzeugt und von dieser als Ergebnis zurückgegeben. Die erzeugende
+  Funktion erstellt das neue Objekt dabei in Abhängigkeit vom Kontext.
+  Beispielsweise kann nach diesem Prinzip eine Funktion ``read_file()`` ein
+  Datei-Reader-Objekt in Abhängigkeit vom Dateityp bzw. der Datei-Endung des
+  angegebenen Pfads generieren:
+
+  .. code-block:: python
+  
+      # Factory-Method-Beispiel
+
+      class CSV_Reader():
+
+          def __init__(self, path):
+              pass
+
+      def file_reader(path):
+
+          # Todo: Check if file exists
+
+          if path.endswith(".csv"):
+              return CSV_READER(path)
+          else:
+              return None
+
+      csv_reader = file_reader('test.csv')
+
+  Soll durch eine Factory Method eine direkte Instanzierung einer Klasse
+  verhindert werden, so kann die Definition dieser Klasse auch innerhalb der
+  Funktionsdefinition erfolgen.
+
+  Die generierende Funktion kann selbstverständlich auch als eine Methode einer
+  "Factory Class" implementiert werden. Eine solche Klasse kann wiederum mehrere
+  verschiedene Factory Methods beinhalten und somit die Generierung von mehreren
+  Objekten bündeln. (Eine echte Firma erzeugt auch meist mehr als ein Produkt.)
+
+* Bei Verwendung einer "Abstract Factory" werden über eine weitere
+  Generalisierungs-Ebene die Factory-Methoden einer konkreten Factory-Klasse
+  kontextbezogen aufgerufen. Durch Verwendung dieses Patterns könnte
+  beispielsweise in einem Strategie-Spiel ein "Gebäude" je nach
+  Entwicklungsstufe andere "Gegenstände" erzeugen.
+
+Factories erzeugen nach ihrem Grundprinzip fertige Objekte "aus einem Guss".
+Soll ein ein Objekt allerdings aus einzelnen Teilen erzeugt werden, so empfiehlt
+sich die Verwendung des folgenden "Builder"-Patterns.
+
+.. _Builder:
+
+Builder
+^^^^^^^
+
+Das "Builder"-Pattern kann verwendet werden, wenn ein Objekt schrittweise aus
+einzelnen Komponenten zusammengestellt werden muss. Die einzelnen Komponenten
+werden dabei durch Factory-Methoden einer (oder mehrerer) "Builder"-Klassen
+erzeugt. Die Builder-Methoden werden wiederum von einem "Director"-Objekt in der
+gewünschten Reihenfolge aufgerufen. Das gewünschte Objekt als Ganzes wird also
+über den Direktor in Auftrag gegeben, der die Anfrage an den passenden Builder
+weiter reicht. Ist das Objekt erstellt, kann der Director es wiederum beim
+Builder abholen und als Ergebnis zurückgeben. Während die einzelnen Builder
+wiederum "Factories" darstellen, ist der Director ein steuerndes Element, das
+kontextbezogen den relevanten Builder auswählt und gewissermaßen "nach Rezept"
+nacheinander dessen Methoden aktiviert.
+
+.. TODO: Beispiel
+
+.. _Prototype:
+
+Prototype
+^^^^^^^^^
+
+Mittels eines "Prototyps" kann ein neues Objekt erstellt werden, indem ein
+bestehendes Objekt als Startpunkt verwendet wird. Um einen Prototypen zu
+erzeugen, muss also zunächst eine exakte Kopie eines bestehenden Objekts erzeugt
+werden.
+
+In Python ist dies einfach mittels der Funktion ``deepcopy()`` aus dem Paket
+``copy``
+
 .. _Singleton:
 
 Singleton
@@ -94,16 +180,27 @@ Form einer Referenz genutzt werden, kann auf die gewünschten Singleton-Methoden
 unmittelbar mittels ``modul.funktionsname()`` und die gewünschten Attribute
 mittels ``modul.variable`` zugegriffen werden.
 
-.. .. _Strukturmuster:
+.. _Strukturmuster:
 
-.. Strukturmuster
-.. --------------
+Strukturmuster
+--------------
+
+Als Strukturmuster ("structural patterns") werden Entwurfsprinzipien bezeichnet,
+die für das Zusammenwirken mehrerer Objekte im Programm nützlich sein können.
 
 
-.. .. _Verhaltensmuster:
+Adapter
+^^^^^^^
 
-.. Verhaltensmuster
-.. ----------------
+
+
+Model-View-Controller
+^^^^^^^^^^^^^^^^^^^^^
+
+.. _Verhaltensmuster:
+
+Verhaltensmuster
+----------------
 
 
 

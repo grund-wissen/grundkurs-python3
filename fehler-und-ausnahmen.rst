@@ -25,7 +25,7 @@ auftretenden Fehler lassen sich allgemein in drei Arten unterteilen:
   können folgendermaßen installiert werden:
 
   .. code-block:: sh
-  
+
       pip3 install pylint
       pip3 install pyflakes
       pip3 install pep8
@@ -40,7 +40,7 @@ auftretenden Fehler lassen sich allgemein in drei Arten unterteilen:
   Verbesserungsvorschläge angezeigt, wie der enthaltene Python-Code in einer
   besser lesbaren Form geschrieben werden kann.
 
-.. PEP8 Syntax-Konvention für gut lesbaren Code... 
+.. PEP8 Syntax-Konvention für gut lesbaren Code...
 .. ``pip3 install pep8``
 .. ``pep8 scriptname.py``
 
@@ -125,7 +125,7 @@ Hierbei versucht Python ebenfalls, den ``with``-Block ebenso wie einen
 "objekt-orientierter": Durch die im ``with``-Statement angegebene Anweisung wird
 eine Instanz eines Objekts erzeugt, in dem obigen Beispiel ein ``file``-Objekt;
 innerhalb des ``with``-Blocks kann auf dieses Objekt mittels des hinter dem
-Schlüsselwort ``as`` angegebenen Bezeichners zugegriffen werden. 
+Schlüsselwort ``as`` angegebenen Bezeichners zugegriffen werden.
 
 In der Klasse des durch das ``with``-Statement erzeugten Objekts sollten die
 beiden Methoden ``__enter__()`` und ``__exit()__`` definiert sein, welche

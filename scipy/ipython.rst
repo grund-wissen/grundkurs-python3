@@ -2,8 +2,9 @@
 ``ipython`` -- ein komfortabler Python-Interpreter
 ==================================================
 
-Ipython ist ein erweiterter Python-Interpreter zum Entwickeln neuer Projekte. Er
-kann durch das gleichnamige Paket installiert werden:
+`Ipython <https://ipython.org/>`__ ist ein erweiterter Python-Interpreter zum
+Entwickeln neuer Projekte. Er kann durch das gleichnamige Paket installiert
+werden:
 
 .. code-block:: bash
 
@@ -132,6 +133,14 @@ geschrieben.
 .. aufrufbar machen
 
 Im folgenden werden einige der ``magic``-Funktionen näher beschrieben.
+
+.. rubric:: Magic-Funktionen automatisch erkennen
+
+Durch eine Eingabe von ``%automagic`` im Ipython-Interpreter werden im Verlauf
+der Sitzung die Namen der Magic-Funktionen in den globalen Namensrauf
+aufgenommen. Im folgenden kann damit wahlweise ``pwd`` oder ``%pwd``
+eingegeben werden, um den Namen des aktuellen Arbeitsverzeichnisses anzuzeigen;
+das bzw. die ``%``-Zeichen können anschließend also weggelassen werden.
 
 .. _Python-Skripte aufrufen:
 

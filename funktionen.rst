@@ -227,6 +227,14 @@ dabei vom Objekt-Typ ab:
   Da Strings nicht verändert werden können, kann eine Veränderung der
   zugehörigen Variablen also nur über eine neue Zuweisung erfolgen.
 
+Die Übergabe eines veränderlichen Datentyps, beispielsweise einer Liste, als
+Argument an eine Funktion ist zwar performance-technisch günstig, da nur eine
+neue Referenz auf die Liste erzeugt werden muss; es können aber unerwartete
+Fehler auftreten, wenn durch eine Funktion das übergebene Original der Liste
+unmittelbar verändert wird. Durch Verwendung von Tupeln anstelle von Listen kann
+dies auf Kosten von CPU und Memory ausgeschlossen werden.
+
+
 .. _Globaler und lokaler Namensraum:
 
 .. rubric:: Globaler und lokaler Namensraum

@@ -30,9 +30,9 @@ project = 'Grundkurs Python 3'
 htmlhelp_basename = 'Grundkurs Python 3'
 html_short_title  = 'Grundkurs Python 3'
 
-version = '0.0.8'
-release = '0.0.8'
-copyright = '2014-2015, Bernhard Grotz'
+version = '0.0.9a'
+release = '0.0.9a'
+copyright = '2014-2016, Bernhard Grotz'
 language = 'de'
 spelling_lang = 'de_DE'
 pygments_style = 'sphinx'
@@ -40,7 +40,7 @@ html_theme = 'sphinxdoc'
 html_logo = "logo.png"
 html_favicon = "favicon.ico"
 html_static_path = ['_static']
-html_last_updated_fmt = '%d. %b %Y'
+html_last_updated_fmt = '%d.%m.%Y'
 html_use_smartypants = True
 html_additional_pages = {'home': 'home.html'}
 html_domain_indices = False
@@ -76,9 +76,10 @@ latex_elements = {
     "papersize":    'a4paper',
     "pointsize":    '12pt',
     "fontpkg":      '',
-    "fncychap":     '\\usepackage[Conny]{fncychap}'
+    "fncychap":     ''
 }
 
+# "fncychap":     '\\usepackage[Conny]{fncychap}'
 latex_domain_indices = False
 
 

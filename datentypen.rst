@@ -190,7 +190,7 @@ gegeben.
 .. floor() und ceil() des ``math``-Moduls (siehe :ref:`Standardbibliothek <math-Modul>`)
 
 
-.. index:: complex()
+.. index:: complex(), Komplexe Zahlen
 .. _Komplexe Zahlen:
 
 ``complex`` -- Komplexe Zahlen
@@ -368,7 +368,7 @@ ausgewählt werden soll:
 .. code-block:: python
 
     example[::2]
-    # Ergebnis: 'Hlo'
+    # Ergebnis: 'HloWl'
 
 Wird für die Schrittweite ein negativer Wert angegeben, so wird der String von
 hinten nach vorne abgearbeitet.
@@ -380,13 +380,98 @@ String-Funktionen
 ^^^^^^^^^^^^^^^^^
 
 Für Zeichenketten gibt es in Python einige Funktionen, die in der Form
-``liste.funktionsname()`` angewendet werden können.
+``zeichenkette.funktionsname()`` angewendet werden können.
 
-.. rubric:: Suchen und Ersetzen
 
-Da Zeichenketten unveränderbar sind, kann der Index-Operator nicht auf der
+.. _Suchen von Teilstrings:
+
+.. rubric:: Suchen von Teilstrings
+
+Mittels des ``in``-Operators kann geprüft werden, ob ein Teilstring in einer
+anderen Zeichenkette enthalten ist:
+
+.. code-block:: python
+
+    'all' in 'Hallo'
+    # Ergebnis: True
+
+.. index:: Zeichenkette; count()
+
+Möchte man eine Zeichenkette nicht nur hinsichtlich der Existenz eines
+Teilstrings prüfen, sondern auch wissen, wie oft dieser darin enthalten ist,
+kann die Funktion ``count()`` verwendet werden:
+
+.. code-block:: python
+
+    # Anzahl des Buchstabens 'l' im Wort 'Hallo':
+
+    'Hallo'.count('l')
+    # Ergebnis: 2
+
+Der Funktion ``count()`` können als weitere Argumente eine Start- und eine
+Stopp-Position übergeben werden, wenn nicht die ganze Zeichenkette, sondern nur
+ein bestimmter Abschnitt durchsucht werden soll:
+
+.. code-block:: python
+
+    # Anzahl des Buchstabens 'l' in den ersten drei Buchstaben von 'Hallo':
+
+    'Hallo'.count('l', 0, 3)
+    # Ergebnis: 1
+
+.. index:: Zeichenkette; find()
+.. index:: Zeichenkette; rfind()
+
+Wie allgemein in Python üblich, wird bei Bereichsangaben die untere Grenze ins
+Intervall aufgenommen, die obere nicht; im obigen Beispiel werden daher nur die
+drei Indexnummern ``0``, ``1`` und ``2`` geprüft. Mit der gleichen Sytanx kann
+mittels der Funktion ``find()`` die Index-Position des ersten Vorkommens eines
+Teilstrings innerhalb der Zeichenkette angezeigt werden:
+
+.. code-block:: python
+
+    'Hallo'.find('l')
+    # Ergebnis: 2
+
+    'Hallo'.find('l', 2, 4)
+    # Ergebnis: 3
+
+Soll die Suche nicht "von links", sondern "von rechts" aus erfolgen, kann die
+Funktion ``rfind()`` genutzt werden; sie gibt als Ergebnis den Index des
+*letzten* Vorkommens des angegebenen Teilstrings zurück. Wird der gesuchte
+String im Zielstring nicht gefunden, liefern die Funktionen ``find()`` und
+``rfind()`` den Wert ``-1`` als Ergebnis zurück.
+
+.. index:: Zeichenkette; endswith()
+
+Soll nur die Endung einer Zeichenkette untersucht werden, beispielsweise
+bei der Prüfung eines Dateityps, so kann anstelle der Funktion ``rfind()``
+noch besser die Funktion ``endswith()`` genutzt werden. Diese liefert genau
+dann als Ergebnis ``True`` zurück, wenn die Zeichenkette mit dem angegebenen
+Teilstring endet.
+
+.. anystring.find(substring)  -> position
+.. anystring.find(substring, position+1) -> next position
+
+.. index:: Zeichenkette; startswith()
+
+In gleicher Weise wie ``endswith()`` gibt die Funktion ``startswith()`` als
+Ergebnis ``True`` zurück, wenn die Zeichenkette mit dem angegebenen Teilstring
+beginnt. Beide Funktionen liefern andererseits ``False`` als Ergebnis.
+
+Komplexere Suchmuster sind mit Hilfe von regulären Ausdrücken und den
+zugehörigen Funktionen aus dem ``re``-Modul möglich.
+
+.. todo Link zu regulären Ausdrücken
+.. index:: Zeichenkette; replace()
+
+.. _Ersetzen von Teilstrings:
+
+.. rubric:: Ersetzen von Teilstrings
+
+Zeichenketten sind unveränderbar. Daher kann der Index-Operator nicht auf der
 linken Seite des Zuweisungsoperators ``=`` stehen; beispielsweise würde die
-Eingabe von ``example[0:5] = 'Salut'`` einen ``TypeError`` erzeugen. Um eine
+Eingabe von ``'Hallo Welt'[0:5] = 'Salut'`` einen ``TypeError`` erzeugen. Um eine
 solche Veränderung vorzunehmen, kann jedoch beispielsweise die speziell für
 Zeichenketten definierte ``replace()``-Funktion genutzt werden, und der daraus
 resultierende String wieder der ursprünglichen Variable zugewiesen werden:
@@ -394,20 +479,13 @@ resultierende String wieder der ursprünglichen Variable zugewiesen werden:
 .. code-block:: python
 
     # 'Hallo' durch 'Salut' ersetzen:
-    example = example.replace('Hallo', 'Salut')
+    example = 'Hallo Welt!'.replace('Hallo', 'Salut')
 
-Statt ``Hallo`` könnte im obigen Beispiel wiederum ``example[0:5]`` geschrieben
-werden. Um zu prüfen, ob und an welcher Stelle ein Teilstring in einer
-Zeichenkette enthalten ist, kann die String-Funktion ``find()`` genutzt werden:
+Komplexere Ersetzungen sind mit Hilfe von regulären Ausdrücken und den
+zugehörigen Funktionen aus dem ``re``-Modul möglich.
 
-.. code-block:: python
-
-    example.find('Welt')
-    # Ergebnis: 6
-
-Der Teilstring ``'Welt'`` ist also ab der Index-Position ``6`` im
-Beispiel-String enthalten. Wird der gesuchte String im Zielstring nicht
-gefunden, liefert die ``find()``-Funktion den Wert ``-1`` als Ergebnis.
+.. todo Link zu regulären Ausdrücken
+.. https://docs.python.org/3/library/re.html#module-re
 
 .. _Groß- und Kleinschreibung ändern:
 
@@ -432,7 +510,7 @@ einer Zeichenkette den ersten Buchstaben als Großbuchstaben und die übrigen al
 Kleinbuchstaben ausgibt. Mit ``swapcase()`` können zudem alle Großbuchstaben
 einer Zeichenkette in Kleinbuchstaben und umgekehrt umgewandelt werden.
 
-.. rubric:: Leerzeichen entfernen
+.. rubric:: Leerzeichen entfernen, Text zentrieren
 
 Mittels der Funktionen ``lstrip()`` oder ``rstrip()`` können Leerzeichen am
 Anfang oder am Ende einer Zeichenkette entfernt werden; mittels ``strip()``
@@ -442,27 +520,52 @@ entfernt.
 Die Funktion ``rstrip()`` wird häufig eingesetzt, um beim Einlesen einer
 Textdatei alle Leerzeichen am Ende der einzelnen Zeilen zu entfernen.
 
+Mittels der Funktion ``center()`` kann eine Zeichenkette umgekehrt über eine
+bestimmte Textbreite zentriert ausgegeben werden. Beispielsweise gibt
+``'Hallo'.center(20)`` als Ergebnis die Zeichenkette ``'       Hallo        '``
+zurück. Eine derartige Formatierung kann beispielsweise für eine tabellarische
+Ausgabe von Daten nützlich sein.
 
-.. The transformer group of method functions includes center(), expandtabs(),
-.. ljust(), rjust(), and zfill(). These methods all make general changes to the
-.. characters of a string to create a transformed result. Methods such as lower()
-.. and upper() are used frequently to normalize case for comparisons:
+
+.. index:: 
+    single: Zeichenkette; split()
+    single: Zeichenkette; join()
+
+.. _Zusammenfügen und Aufteilen von Zeichenketten:
+
+.. rubric:: Aufteilen und Zusammenfügen von Zeichenketten
+
+Mittels der Funktion ``split()`` kann eine Zeichenkette in eine Liste von
+Teilstrings aufgeteilt werden. Als Argument wird dabei üein Zeichen oder eine
+Zeichenfolge angegeben, gemäß der die Aufteilung erfolgen soll. Verwendet man
+beispielsweise als Trennzeichen das Leerzeichen ``' '``, so wird die
+Zeichenkette in einzelne Wörter aufgeteilt.
+
+.. code-block:: python
+
+    # Zeichenkette aufteilen:
+
+    'Hallo Welt'.split(' ')
+    # Ergebnis: ['Hallo', 'Welt']
+
+Wird die Funktion ``split()`` ohne Trennzeichen als Argument aufgerufen, so wird
+die Zeichenkette an allen Whitespace-Zeichen aufgetrennt. So kann beispielsweise
+mit ``len( text.split() )`` die Anzahl der Wörter in einer Zeichenkette
+gezählt werden.
+
+.. code-block:: python
+
+    # Zeichenkette zusammenfügen:
+
+    ' '.join(['Hallo', 'Welt'])
+    # Ergebnis: 'Hallo Welt'
 
 
-Eine `vollständige Liste an String-Funktionen
-<https://docs.python.org/3/library/stdtypes.html#str>`_ erhält man, indem man
-die Funktion ``dir()`` auf einen beliebigen String anwendet, beispielsweise
-``dir(string_1)``. Nähere Informationen können dann beispielsweise mittels
-``help(string_1.replace)`` aufgerufen werden.
-
-.. todo: split(), strip(), center(), startswidth(),
-.. endswidth(), count() hier erwähnen?
-
-.. anystring.count(substring) -> number of matches
-.. anystring.find(substring)  -> position
-.. anystring.find(substring, position+1) -> next position
-
-.. rfind() -> letztes Vorkommen des Suchbegriffs im Text
+Umgekehrt kann mittels der Funktion ``join()`` eine Liste von Teilstrings zu
+einer einzigen Zeichenkette zusammengesetzt werden. Dabei wird zunächst in der
+Zeichenkette ein Verbindungszeichen (oder eine Folge von Verbindungszeichen)
+angegeben, als Argument der ``join()``-Funktion wird dann die Liste der zu
+verknüpfenden Teilstrings übergeben.
 
 .. _Formatierung von Zeichenketten:
 
@@ -515,6 +618,18 @@ Platzhalter angesehen und durch die als Argumente der Funktion ``format()``
 angegebenen Variablen ersetzt. Als einzige Besonderheit müssen bei dieser
 Methode "echte" geschweifte Klammern, die als Textsymbole in der Zeichenkette
 vorkommen sollen, durch ``{{`` bzw. ``}}`` dargestellt werden.
+
+Eine komplette Liste an möglichen Format-Angaben findet sich in der offiziellen
+`Python-Dokumentation
+<https://docs.python.org/3/library/string.html#formatspec>`__.
+
+.. rubric:: Sonstiges:
+
+Eine `vollständige Liste an String-Funktionen
+<https://docs.python.org/3/library/stdtypes.html#str>`_ erhält man, indem man
+die Funktion ``dir()`` auf einen beliebigen String anwendet, beispielsweise
+``dir(string_1)``. Nähere Informationen können dann beispielsweise mittels
+``help(string_1.replace)`` aufgerufen werden.
 
 
 .. index:: Liste, Tupel, list(), tuple()
@@ -601,7 +716,7 @@ angegeben werden, der festlegt, jedes wie vielte Element ausgewählt werden soll
 
 .. code-block:: python
 
-    liste_1[3:5]
+    liste_1[1:5:2]
     # Ergebnis: ['a', 'c', 2]
 
 Ist der Wert des dritten Parameters negativ, so wird die Liste von hinten nach
@@ -753,8 +868,9 @@ mittels der Funktion ``index()`` bestimmt werden: [#]_
 
 Demnach kann der Wert ``3`` im obigen Beispiel mittels ``liste_1[2]`` aufgerufen
 werden und ist somit das dritte Element der Liste. Vor der Verwendung von
-``index()`` sollte allerdings stets geprüft werden, ob sich das Element in der
-Liste befindet, da ansonsten ein ``ValueError`` auftritt.
+``index()`` sollte allerdings mittels ``if element in liste:`` stets geprüft
+werden, ob sich das Element in der Liste befindet, da ansonsten ein
+``ValueError`` auftritt.
 
 Mittels ``insert(indexnummer, element)`` kann ein neues Element
 *vor* der angegebenen Indexnummer eingefügt werden:
@@ -894,7 +1010,7 @@ der neuen Liste zu speichern.
       liste_1 = [2, 3, 4, 5, 6]
 
       # List Comprehension anwenden:
-      gemeinsame_elemente = [i for i liste_1 if i in liste_2]
+      gemeinsame_elemente = [i for i in liste_1 if i in liste_2]
 
       gemeinsame_elemente
       # Ergebnis: [2, 3, 4, 5]
@@ -1027,6 +1143,10 @@ getrennt aufgelistet.
         ...
         }
 
+Anstelle von Zeichenketten können auch Zahlen oder andere unveränderbare Objekte
+genutzt werden -- beispielsweise Tupel. Veränderbare Objekttypen wie
+beispielsweise Listen sind hingegen als Schlüssel nicht erlaubt.
+
 Auf die einzelnen Werte eines ``dicts`` kann mittels des Index-Operators
 zugegriffen werden, wobei jedoch nicht ein numerischer Wert, sondern der Name
 eines Schlüssels in den eckigen Klammern angegeben wird:
@@ -1038,7 +1158,7 @@ eines Schlüssels in den eckigen Klammern angegeben wird:
 
 .. index:: View, keys() (dict-Methode), values() (dict-Methode), items() (dict-Methode)
 
-Mittels der ``dict``-Funktionen ``keys()``, ``values()`` und ``items()`` lassen
+Mittels der `dict``-Funktionen ``keys()``, ``values()`` und ``items()`` lassen
 sich so genannte "Views" eines Wörterbuchs erzeugen. Bei einem View handelt es
 sich um eine Listen-Variable, die automatisch aktualisiert wird, wenn das
 zugehörige ``dict`` geändert wird.
@@ -1076,8 +1196,24 @@ man dies verhindern, so kann man folgenden Code nutzen:
 
 .. code-block:: python
 
-    anydict.get(key1, default=None)
+    anydict.get(key_1, default=None)
     # Ergebnis: value_1 oder None
+
+Mittels der Funktion ``dict`` können Dictionaries als "Zähler" genutzt
+werden: Soll beispielsweise festgehalten werden, wie häufig einzelne Worte in
+einem Text vorkommen, so legt man zunächst mittels ``wortanzahl = dict()`` ein neues
+``dict`` an; anschließend kann wortweise geprüft werden, ob dieses Wort bereits
+als Schlüssel im ``dict`` enthalten ist. Ist dies der Fall, so wird der
+zugehörige "Counter"-Wert um ``1`` erhöht, andernfalls wird ein neuer Schlüssel
+mit dem Wert ``1`` angelegt. Ist das zu prüfende Wort in der Variable ``wort``
+gespeichert, so genügt für die genannte Aufgabe bereits ein Einzeiler:
+
+.. code-block:: python
+
+    # Prüfen, ob Wort bereits im Dict enthalten ist;
+    # Counter um 1 erhöhen
+    wortanzahl[wort] = wortanzahl.get(wort, 0) + 1
+
 
 .. Eintrag löschen: del()
 .. Einträge in dict1 ergänzen bzw. aktualisieren mittels neuem dict: dict_1.update(dict_2)
@@ -1085,6 +1221,7 @@ man dies verhindern, so kann man folgenden Code nutzen:
 
 .. index:: file
 .. _Dateien:
+.. _file:
 
 ``file`` -- Dateien
 -------------------
@@ -1092,6 +1229,8 @@ man dies verhindern, so kann man folgenden Code nutzen:
 Datei-Objekte stellen in Python die Hauptschnittstelle zu externen Dateien auf
 dem Computer dar. Sie können genutzt werden, um Dateien beliebigen Typs zu
 lesen oder zu schreiben.
+
+.. index:: open()
 
 Datei-Objekte werden erzeugt, indem man die Funktion ``open()`` aufruft, und
 dabei den Namen der Datei sowie ein Kürzel für den gewünschten
@@ -1108,6 +1247,7 @@ angehängt werden, beispielsweise bezeichnet ``'rb'`` den Lesemodus einer
 binären Datei.
 
 
+.. index:: read(), readline(), readlines()
 .. _Einlesen von Dateien:
 
 .. rubric:: Einlesen von Dateien
@@ -1124,7 +1264,8 @@ Diese Methode ist für größere Dateien nicht empfehlenswert. Besser ist es,
 mittels der Funktion ``readline()`` eine Datei Zeile für Zeile einzulesen.
 Bei jedem solchen Aufruf wird die jeweils eingelesene Zeile als Ergebnis
 zurückgegeben und der "Cursor" für die aktuelle Position in der Datei auf die
-nächste Zeile gesetzt.
+nächste Zeile gesetzt. Mit der Funktion ``readlines()`` wird die Datei
+zeilenweise in eine Liste von Zeichenketten eingelesen.
 
 Noch einfacher ist ein zeilenweises Einlesen, indem die Datei-Variable selbst
 als iterierbares Objekt an eine :ref:`for <for>`-Schleife übergeben wird:
@@ -1141,6 +1282,7 @@ Am Ende eines Lesezugriffs sollte die Datei mittels ``close(myfile)`` wieder
 geschlossen werden.
 
 
+.. index:: write(), readlines()
 .. _Schreiben in Dateien:
 
 .. rubric:: Schreiben in Dateien
@@ -1158,6 +1300,13 @@ mehrzeilige) Zeichenkette in die Datei geschrieben werden:
 .. code-block:: python
 
     myfile.write('Hallo Welt!\n')
+
+Zudem kann mittels ``myfile.writelines(stringliste)`` kann eine Liste von
+einzelnen Zeichenketten in eine Datei geschrieben werden. Die einzelnen
+Zeichenketten werden bei ``write()`` als auch bei ``writelines()`` 
+geschrieben "wie sie sind", es muss also bei Bedarf ein Zeilenende-Zeichen
+``\n`` am Ende der zu schreibenden Zeichenkette(n) sein, damit auch in der
+geschriebenen Datei an der jeweiligen Stelle ein Zeilenumbruch erfolgt.
 
 Am Ende eines Schreibzugriffs *muss* die Datei mittels ``close(myfile)`` wieder
 geschlossen werden, da nur dann das Datei-Attribut ``mtime``
@@ -1214,10 +1363,10 @@ Lesen oder Schreiben ein Fehler aufgetreten ist.
 .. [#] Die Funktionen ``count()`` und ``index()`` sind die einzigen beiden
     Listenfunktionen, die auch für die unveränderlichen Tupel definiert sind.
 
-..  .. [#] Zeichen werden von Python wie unveränderliche Listen einzelner Zeichen behandelt.
-       ..  Hat man beispielsweise eine Liste mit einzelnen Buchstaben oder Ziffern,
-       ..  die man zu einem String zusammenfügen möchte, so kann man dies mittels
-       ..  ``''.join(mylist)`` (Verbindung aller Zeichen ohne Leerzeichen) oder
-       ..  ``' '.join(mylist)`` (Verbindung aller Zeichen mit Leerzeichen)
-       ..  erreichen.
+.. .. [#] Zeichen werden von Python wie unveränderliche Listen einzelner Zeichen behandelt.
+..  Hat man beispielsweise eine Liste mit einzelnen Buchstaben oder Ziffern,
+..  die man zu einem String zusammenfügen möchte, so kann man dies mittels
+..  ``''.join(mylist)`` (Verbindung aller Zeichen ohne Leerzeichen) oder
+..  ``' '.join(mylist)`` (Verbindung aller Zeichen mit Leerzeichen)
+..  erreichen.
 
