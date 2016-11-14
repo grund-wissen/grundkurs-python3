@@ -575,7 +575,7 @@ Bisweilen mag man beispielsweise mit ``print()`` den Wert einer Variablen als
 Teil einer Zeichenkette ausgeben. Zu diesem Zweck können in die Zeichenkette
 Platzhalter eingebaut werden, die dann durch die gewünschten Werte ersetzt
 werden. Dies funktioniert der "klassischen" Methode nach (wie etwa in :ref:`C
-<gwic:Grundkurs C>` so:
+<gwic:Grundkurs C>`) so:
 
 .. code-block:: python
 
@@ -953,6 +953,7 @@ ersten Liste bestehen.
 
 .. TODO Listen kopieren mit copy(), sonst nur Referenzen!
 
+.. _List-Comprehension:
 .. _List-Comprehensions:
 
 List-Comprehensions
@@ -1221,6 +1222,7 @@ gespeichert, so genügt für die genannte Aufgabe bereits ein Einzeiler:
 
 .. index:: file
 .. _Dateien:
+.. _Datei:
 .. _file:
 
 ``file`` -- Dateien

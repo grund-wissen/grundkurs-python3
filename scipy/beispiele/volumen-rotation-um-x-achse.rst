@@ -25,7 +25,7 @@ Untergrenze bei :math:`a=1` und die Obergrenze bei :math:`b=5` liegen soll.
 *Lösung:*
 
 Der Graph der Funktion :math:`f(x) = x^2 + x + \frac{1}{x}` kann mit Hilfe von
-`numpy <http://docs.scipy.org/doc/numpy/reference/>`_ und der `matplotlib
+`numpy <https://docs.scipy.org/doc/numpy/reference/>`_ und der `matplotlib
 <http://matplotlib.org/api/index.html>`_ geplottet werden:
 
 .. code-block:: python

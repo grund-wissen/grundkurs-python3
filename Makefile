@@ -4,7 +4,7 @@
 # You can set these variables from the command line.
 # -q quiet -E reload intersphinx
 #SPHINXOPTS    = -E -q 
-SPHINXOPTS    = -q
+SPHINXOPTS    = 
 SPHINXBUILD   = sphinx-build
 PAPER         =
 BUILDDIR      = _build

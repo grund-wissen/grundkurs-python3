@@ -378,7 +378,7 @@ sind dann üblicherweise folgende Routinen vorhanden:
     .. rubric:: Anmerkungen:
 
 .. [#] Siehe auch `Open Sourcing a Python Project the Right Way
-    <http://www.jeffknupp.com/blog/2013/08/16/open-sourcing-a-python-project-the-right-way/>`_
+    <http://jeffknupp.com/blog/2013/08/16/open-sourcing-a-python-project-the-right-way/>`_
     und `Filesystem structure of a Python project
     <http://as.ynchrono.us/2007/12/filesystem-structure-of-python-project_21.html>`_
     für weitere Tips.

@@ -92,23 +92,44 @@ virtuelle Arbeitsumgebung erstellt werden:
 .. code-block:: sh
 
     # Virtuelle Umgebung im Unterverzeichnis "env" erstellen:
-    virtualenv -p python3 env`
+    virtualenv -p python3 env
 
 Diese Umgebung kann dann aus dem Projektverzeichnis heraus folgendermaßen
 aktiviert werden:
 
 .. code-block:: sh
 
+    # Virtuelle Umgebung aktivieren:
     source env/bin/activate
 
 Alle Paket-Installationen, die bei einer aktiven virtuellen Umgebung vorgenommen
 werden, haben nur Auswirkung auf diese Umgebung; zunächst ist überhaupt kein
-Zusatzpaket installiert. Es ist empfehlenswert, ebenfalls im Basisverzeichnis
-des Projekts eine Datei ``requirements.txt`` mit den benötigten Modulen (ein
-Eintrag je Zeile) zu erstellen und diese dann mittels ``pip3 install -r
-requirements`` zu installieren. Auf diese Weise wird schnell deutlich, welche
-Pakete ein Benutzer für die Verwendung des Programms installieren muss.
+Zusatzpaket installiert. Mittels ``pip3 install paketname`` können wie gewohnt
+Pakete installiert werden: 
+
+.. code-block:: sh
+
+    # Python-Paket in der virtuellen Umgebung installieren:
+    pip3 install Sphinx
+
+Gegebenenfalls muss, beispielsweise bei der lokalen Installation von
+:ref:`Sphinx <gwl:Sphinx>`, anschließend ``hash -r`` eingegeben werden, damit
+der "Suchpfad" aktualisiert und die Python-Programme beim Aufruf auch lokal
+gefunden werden.
+
+.. Es ist empfehlenswert, ebenfalls im Basisverzeichnis des Projekts eine Datei
+.. ``requirements.txt`` mit den benötigten Modulen (ein Eintrag je Zeile) zu
+.. erstellen und diese dann mittels ``pip3 install -r requirements`` zu
+.. installieren. Auf diese Weise wird schnell deutlich, welche Pakete ein Benutzer
+.. für die Verwendung des Programms installieren muss.
 
 Durch Eingabe von ``deactivate`` in dem Shell-Fenster wird die virtuelle
-Umgebung wieder beendet.
+Umgebung wieder beendet:
+
+.. code-block:: sh
+
+    # Virtuelle Umgebung beenden:
+    deactivate
+
+
 

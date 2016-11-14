@@ -34,6 +34,7 @@ Grundkurs Python 3
     klassen-und-objektorientierung.rst
     module-und-pakete.rst
     fehler-und-ausnahmen.rst
+    debugging-logging-testing.rst
     design-patterns.rst
     scipy/index.rst
     anhang.rst

@@ -3,15 +3,15 @@ import sys, os
 sys.path.append(os.path.abspath('_exts'))
 
 extensions = [
-    'matplotlib.sphinxext.mathmpl',
-    'matplotlib.sphinxext.only_directives',
-    'matplotlib.sphinxext.plot_directive',
+    # 'matplotlib.sphinxext.mathmpl',
+    # 'matplotlib.sphinxext.only_directives',
+    # 'matplotlib.sphinxext.plot_directive',
     'sphinx.ext.autodoc',
     'sphinx.ext.doctest',
     'sphinx.ext.intersphinx',
     'sphinx.ext.todo',
     'sphinx.ext.coverage',
-    'sphinx.ext.pngmath',
+    'sphinx.ext.imgmath',
     'sphinx.ext.ifconfig',
     'sphinx.ext.viewcode',
     # "sphinxcontrib.blockdiag",
@@ -30,8 +30,8 @@ project = 'Grundkurs Python 3'
 htmlhelp_basename = 'Grundkurs Python 3'
 html_short_title  = 'Grundkurs Python 3'
 
-version = '0.0.9a'
-release = '0.0.9a'
+version = '0.1.1a'
+release = '0.1.1a'
 copyright = '2014-2016, Bernhard Grotz'
 language = 'de'
 spelling_lang = 'de_DE'
@@ -41,6 +41,8 @@ html_logo = "logo.png"
 html_favicon = "favicon.ico"
 html_static_path = ['_static']
 html_last_updated_fmt = '%d.%m.%Y'
+today_fmt = '%d.%m.%Y'
+
 html_use_smartypants = True
 html_additional_pages = {'home': 'home.html'}
 html_domain_indices = False
@@ -67,14 +69,14 @@ latex_preamble = r'''
 \setcounter{tocdepth}{1}
 '''
 
-pngmath_latex_preamble = latex_preamble
+imgmath_latex_preamble = latex_preamble
 
 latex_elements = {
     "preamble":     latex_preamble,
     "babel":        "\\usepackage[ngerman]{babel}",
-    "classoptions": 'oneside,openany',
-    "papersize":    'a4paper',
-    "pointsize":    '12pt',
+    "classoptions": 'oneside,openany,',
+    "papersize":    'a4paper,',
+    "pointsize":    '12pt,',
     "fontpkg":      '',
     "fncychap":     ''
 }

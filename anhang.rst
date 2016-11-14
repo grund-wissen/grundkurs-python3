@@ -1754,9 +1754,42 @@ iterierbaren Objekts (beispielsweise einer Liste) als Ergebnis zurück.
 super()
 ^^^^^^^
 
-.. Die Funktion ``super()``
+Die Funktion `super()
+<https://docs.python.org/3/library/functions.html#super>`__ gibt, ausgehend von
+der Klasse des aufrufenden Objekts, die in der Objekt-Hierarchie nächst höher
+liegende Klasse an; dies wird insbesondere bei der :ref:`Vererbung <Vererbung>`
+von Methoden genutzt.
 
-... todo! ...
+Die Objekt-Hierarchie gibt eine Art Stammbaum für die Klasse an. Über das
+Attribut ``__mro__`` einer Klasse ("Method Resolution Order") kann abgefragt
+werden, in welcher Reihenfolge Klassen bei einem Methodenaufruf nach einer
+entsprechend benannten Methode durchsucht werden.
+
+*Beispiel:*
+
+.. code-block:: python
+
+    # Objekt-Hierarchie einer abgeleiteten Klasse anzeigen:
+
+    import enum
+
+    enum.OrderedDict.__mro__
+    # Ergebnis: (collections.OrderedDict, builtins.dict, builtins.object)
+
+Wird beispielsweise beim Aufruf von ``obj.eine_methode()`` die Methode nicht im
+Namensraum des Objekts gefunden, so wird entlang der Method Resolution-Order
+geprüft, ob eine gleichnamige Methode in einer übergeordneten Klasse definiert
+ist. Ist dies der Fall, so wird die Methode dieser Klasse aufgerufen, da die
+konkrete Klasse des Objekts die Methoden "geerbt" und nicht überschrieben hat.
+Den Zugriff auf die jeweils nächste Klasse der Method Resolution Order bietet
+gerade die Funktion ``super()``.
+
+Beim Programmieren kann die Funktion ``super()``, die in Python3 fast immer ohne
+Argumente aufgerufen wird, genutzt werden, um eine Methode der übergeordneten
+Klasse aufzugreifen und gleichzeitig zu modifizieren.
+
+.. https://rhettinger.wordpress.com/2011/05/26/super-considered-super/
+
 
 .. index:: tuple()
 .. _tuple():
@@ -1817,7 +1850,7 @@ Eigenschaften:
     c1 = C()
 
     # Type-Objekt mit gleichen Eigenschaften generieren:
-    c2 = type('C', (object,), dict(x=1) ) 
+    c2 = type('C', (object,), dict(x=1) )
 
 
 .. index:: vars()
@@ -1901,6 +1934,7 @@ erstellt werden:
 
     import copy
 
+    # Kopie eines Objekts erzeugen:
     objekt2 = copy.deepcopy(objekt1)
 
 Werden nun die Attribut-Werte von ``objekt2`` geändert, so bleiben die Werte des
@@ -1938,24 +1972,96 @@ Mit dem Profiler können in verschachtelten Funktionen schnell "Bottlenecks"
 gefunden werden, also Programmteile, die sehr rechenintensiv sind und daher
 bevorzugt optimiert werden sollten.
 
+.. index:: logging (Modul)
+.. _logging:
+
+``logging`` -- Logger-Modul
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Das `logging
+<https://docs.python.org/3/library/logging.html#module-logging>`__-Modul stellt
+einfache Methoden bereit, mit denen ein einfaches Aufzeichnen verschiedener
+Informationen im Verlauf eines Programms ermöglicht wird.
+
+Das ``logging``-Modul ist im Abschnitt :ref:`Arbeiten mit Logdateien <Arbeiten
+mit Logdateien>` näher beschrieben.
+
+.. http://victorlin.me/posts/2012/08/26/good-logging-practice-in-python
+
+
+.. index:: math (Modul)
+.. _math:
+
+``math`` -- Mathematische Funktionen
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Das `math <https://docs.python.org/3/library/math.html#module-math>`__-Modul
+stellt eine Vielzahl häufig vorkommender mathematischer Funktionen bereit. Unter
+anderem sind folgende Funktionen nützlich:
+
+* Mit ``math.pi`` und ``math.e`` können die Naturkonstanten :math:`\pi =
+  3,1415\ldots` und :math:`e = 2,7182\ldots` ausgegeben werden.
+
+* Mit ``math.floor(zahl)`` wird der nächst kleinere ``int``-Wert zur angegebenen
+  Zahl ausgegeben, mit ``math.ceil(zahl)`` der nächst größere ``int``-Wert.
+
+* Mit ``math.factorial(n)`` wird die Fakultät :math:`n!=n \cdot (n-1) \cdot
+  (n-2) \cdot \ldots \cdot 1` einer positiven ganzzahligen Zahl :math:`n`
+  ausgegeben.
+
+* Mit ``math.sqrt(zahl)`` wird die Wurzel einer positiven Zahl ausgegeben.
+
+* Mit ``math.pow(zahl, n)`` wird die ``n``-te Potenz der angegebenen Zahl
+  ausgegeben. Für :math:`n` kann auch eine ``float``-Zahl kleiner als ``1``
+  angegeben werden; beispielsweise wird durch ``math.pow(8, 1/3)`` die dritte
+  Wurzel von ``8`` berechnet.
+
+* Mit ``math.exp(x)`` wird der Wert der :ref:`Exponentialfunktion
+  <gwm:Exponentialfunktionen>`  :math:`e^{x}` ausgegeben.
+
+* Mit ``math.log(x, a)`` wird der Wert der :ref:`Logarithmusfunktion
+  <gwm:Logarithmusfunktion>` :math:`\log_{a}{(x)}` ausgegeben. Wird kein
+  Basis-Wert angegeben, so wird der natürliche Logarithmus, also der Logarithmus
+  zur Basis :math:`e` berechnet.
+
+* Mit ``math.radians(winkelwert)`` kann der angegebene Winkel (im Gradmaß) ins
+  :ref:`Bogenmaß <gwm:Bogenmaß>`, mittels ``math.degrees(zahl)`` das angegebene
+  Bogenmaß ins Gradmaß Winkelwert umgerechnet werden.
+
+* Mit ``math.sin(x)``, ``math.cos(x)`` und ``math.tan(x)`` können die
+  :ref:`trigonometrischen Funktionen <gwm:Trigonometrische Funktionen>` Sinus,
+  Cosinus und Tangens zu den angegeben Werten berechnet werden; diese müssen im
+  Bogenmaß, also in ``rad`` angegeben werden.
+
+* Mit  ``math.asin(x)``, ``math.acos(x)`` und ``math.atan(x)`` können die
+  Umkehrfunktionen zu den jeweiligen trigonometrischen Funktionen berechnet
+  werden; die Ergebnisse werden im Bogenmaß, also in ``rad`` angegeben.
+
+Das ``math``-Modul ist für die Berechnung einzelner Werte vorgesehen. Für die
+Berechnung von Zahlenreihen stellt das Zusatz-Modul :ref:`numpy <Numpy>`
+gleichnamige Funktionen bereit. Diese können jeweils nicht nur einen einzelnen
+Wert, sondern jeweils auch eine Liste von entsprechenden Zahlenwerten als
+Argument effizient auswerten.
+
+
 .. index:: os (Modul)
 .. _os:
 
-os - Interaktion mit dem Betriebsystem
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+``os`` -- Interaktion mit dem Betriebsystem
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Das `os <https://docs.python.org/3/library/os.html>`__-Modul stellt einige
 nützliche Funktionen und Konstanten bereit, um gewöhnliche Aufgaben auf der
 Ebene des Betriebsystems durchführen zu können.
 
-* Mit ``os.chdir()`` wird das als Argument angegebene Verzeichnis zum aktuellen Arbeitsverzeichnis.
+* Mit ``os.chdir(pfad)`` wird das als Argument angegebene Verzeichnis zum aktuellen Arbeitsverzeichnis.
 * Mit ``os.getcwd()`` wird der Pfad des aktuellen Arbeitsverzeichnisses ausgegeben.
-* Mit ``os.listdir()`` wird eine Liste aller Dateinamen des als Argument
+* Mit ``os.listdir(pfad)`` wird eine Liste aller Dateinamen des als Argument
   angegebenen Verzeichnisses ausgegeben.
-* Mit ``os.mkdir()`` wird das als Argument angegebene Verzeichnis neu erstellt.
-* Mit ``os.rmdir()`` wird das als Argument angegebene Verzeichnis gelöscht.
-* Mit ``os.remove()`` wird die als Argument angegebene Datei gelöscht.
-* Mit ``os.rename(old, new)`` wird einer Datei oder einem Verzeichnis ein neuer
+* Mit ``os.mkdir(verzeichnisname)`` wird das als Argument angegebene Verzeichnis neu erstellt.
+* Mit ``os.rmdir(verzeichnisname)`` wird das als Argument angegebene Verzeichnis gelöscht.
+* Mit ``os.remove(dateiname)`` wird die als Argument angegebene Datei gelöscht.
+* Mit ``os.rename(alt, neu)`` wird einer Datei oder einem Verzeichnis ein neuer
   Name zugewiesen.
 
 Mit der Funktion ``os.popen()`` ist es zudem möglich, ein Programm in einer
@@ -1988,28 +2094,28 @@ werden kann:
 .. index:: os.path (Modul)
 .. _os.path:
 
-os.path - Pfadfunktionen
-"""""""""""""""""""""""""
+``os.path`` -- Pfadfunktionen
+"""""""""""""""""""""""""""""
 
 Das `os.path <https://docs.python.org/3/library/os.path.html>`__-Modul stellt einige
 nützliche Funktionen bereit, die bei der Arbeit mit Datei- und Verzeichnisnamen
 hilfreich sind:
 
-* Mit ``os.path.exists()`` kann geprüft werden, ob der als Argument angegebene
+* Mit ``os.path.exists(pfad)`` kann geprüft werden, ob der als Argument angegebene
   Dateiname als Pfad im Dateisystem existiert; als Ergebnis gibt die Funktion
   ``True`` oder ``False`` zurück.
-* Mit ``os.path.isdir()`` kann geprüft werden, ob der als Argument angegebene
+* Mit ``os.path.isdir(pfad)`` kann geprüft werden, ob der als Argument angegebene
   Pfad ein Verzeichnis ist; als Ergebnis gibt die Funktion
   ``True`` oder ``False`` zurück.
-* Mit ``os.path.isfile()`` kann geprüft werden, ob der als Argument angegebene
+* Mit ``os.path.isfile(pfad)`` kann geprüft werden, ob der als Argument angegebene
   Pfad eine Datei ist; als Ergebnis gibt die Funktion
   ``True`` oder ``False`` zurück.
-* Mit ``os.path.getsize()`` kann der vom als Argument angegebenen Pfad belegte
+* Mit ``os.path.getsize(pfad)`` kann der vom als Argument angegebenen Pfad belegte
   Speicherplatz ausgegeben werden.
 
 
 Um nicht nur relative, sondern auch absolute Pfadangaben nutzen zu können, kann
-die Funktion ``os.path.abspath()`` genutzt werden; diese gibt zu einem
+die Funktion ``os.path.abspath(pfad)`` genutzt werden; diese gibt zu einem
 angegebenen (relativen) Dateinamen den zugehörigen absoluten Pfad an.
 
 .. todo os.path.join(verzeichnisname, dateiname)
@@ -2018,8 +2124,8 @@ angegebenen (relativen) Dateinamen den zugehörigen absoluten Pfad an.
 .. index:: pickle (Modul)
 .. _pickle:
 
-pickle - Speichern von Python-Objekten
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+``pickle`` -- Speichern von Python-Objekten
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Das `pickle <https://docs.python.org/3/library/pickle.html>`__-Modul ermöglicht
 es, während einer Python-Sitzung existierende Objekte in Byte-Strings
@@ -2065,8 +2171,8 @@ angegebenen Datei-Objekt gelesen werden.
 .. index:: Zufallszahlen, random (Modul)
 .. _random:
 
-random - Zufallsgenerator
-^^^^^^^^^^^^^^^^^^^^^^^^^
+``random`` -- Zufallsgenerator
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Das `random <https://docs.python.org/3/library/random.html>`__-Modul stellt
 Funktion zum Erzeugen von Zufallszahlen, für das Auswählen eines zufälligen
@@ -2096,12 +2202,43 @@ Anschließend können folgende Funktionen genutzt werden:
 Beispielsweise kann also mittels ``random.randint(1,6)`` das Verhalten eines
 gewöhnlichen sechsflächigen Würfels imitiert werden.
 
+.. _sys:
+
+``sys`` -- Systemzugriff
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Das `sys <https://docs.python.org/3/library/sys.html>`__-Modul stellt Variablen
+und Funktion bereit, die in unmittelbarem Zusammenhang mit dem
+Python-Interpreter selbst stehen. Hilfreich sind unter anderem:
+
+
+* Mit ``sys.exit()`` kann die aktuelle Interpreter-Sitzung beziehungsweise das
+  aktuelle Programm beendet werden. Bei einem gewöhnlichen Beenden ohne Fehler
+  wird dabei üblicherweise der Wert ``0`` als Argument angegeben, bei einem
+  fehlerhaften Beenden der Wert ``1``.
+
+* Mit ``sys.modules`` erhält man eine Liste aller Module, die in der aktuellen
+  Interpreter-Sitzung beziehungsweise im laufenden Programm bereits geladen
+  wurden.
+
+* Mit ``sys.path`` erhält man eine Liste mit Pfadnamen, in denen beim Aufruf von
+  ``import`` nach Modulen gesucht wird.
+
+* Mit ``sys.stdin``, ``sys.stdout`` und ``sys.stderr`` hat man Zugriff zu den
+  drei gewöhnlichen Shell-Kanälen (Eingabe, Ausgabe, Fehler). In Python werden
+  diese wie gewöhnliche :ref:`Datei <Datei>`-Objekte behandelt.
+
+* Mit ``sys.version`` wird die Versionsnummer des Python-Interpreters
+  ausgegeben.
+
+
+
 .. _timeit:
 
 ``timeit`` -- Laufzeitanalyse
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Mittels des Pakets `timeit
+Mittels des Moduls `timeit
 <https://docs.python.org/3/library/timeit.html>`__ und der
 gleichnamigen Funktion aus diesem Paket kann einfach ermittelt werden, wieviel
 Zeit eine Funktion für einen Aufruf benötigt:

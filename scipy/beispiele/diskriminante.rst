@@ -67,7 +67,7 @@ Die Diskriminante ist positiv, somit hat die Gleichung die zwei Lösungen
     # Ergebnis: -1.56776436283002
 
 Der Funktionsgraph als Ganzes kann mittels `numpy
-<http://docs.scipy.org/doc/numpy/reference/>`_ und `matplotlib
+<https://docs.scipy.org/doc/numpy/reference/>`_ und `matplotlib
 <http://matplotlib.org/api/index.html>`_ folgendermaßen erzeugt werden:
 
 .. code-block:: python
@@ -96,10 +96,10 @@ Der Funktionsgraph als Ganzes kann mittels `numpy
 Das Ergebnis sieht so aus:
 
 .. figure:: pics/diskriminante.png
-    :width: 50%
-    :align: center
     :name: fig-diskriminante
     :alt:  fig-diskriminante
+    :align: center
+    :width: 50%
 
     Graph der Funktion :math:`f(x) = x^2 - 8 \cdot x - 15`.
 

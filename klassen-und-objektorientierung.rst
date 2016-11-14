@@ -578,5 +578,69 @@ Der wohl typischste Dekorator
 Generatoren und Iteratoren
 --------------------------
 
+Generatoren sind Objekte, die über eine ``__next__()``-Funktion verfügen, also
+bei jedem Aufruf von ``next(generator_object)`` einen neuen Rückgabewert
+liefern. Man kann sich einen Generator also vorstellen wie eine Funktion, die
+mit jedem Aufruf das nächste Element einer Liste zurückgibt. Kann der Generator
+keinen weiteren Rückgabewert liefern, wird ein ``StopIteration``-Error
+ausgelöst.
+
+Der Vorteil von Generatoren gegenüber Listen liegt darin, dass auch bei sehr
+großen Datenmengen kein großer Speicherbedarf nötig ist, da immer nur das
+jeweils aktuell zurückgegebene Objekt im Speicher existiert. Beispielsweise
+handelt es sich auch bei :ref:`File <File>`-Objekten um Generatoren, die beim
+Aufruf von ``next(fileobject)`` jeweils die nächste Zeile der geöffneten
+ausgeben. Auf diese Weise kann der Inhalt einer (beliebig) großen Datei
+beispielsweise mittels einer ``for``-Schleife abgearbeitet werden, ohne dass der
+Inhalt der Datei auf einmal eingelesen und als Liste gespeichert werden muss.
+
+Generatoren werden mit einer Syntax erzeugt, die der von :ref:`List
+Comprehensions <List-Comprehension>` sehr ähnlich ist; es wird lediglich runde
+Klammern anstelle der eckigen Klammern zur Begrenzung des Ausdrucks verwendet:
+
+.. code-block:: python
+
+    # List Comprehension:
+
+    mylist = [i**2 for i in range(1,10)]
+
+    mylist
+    # Ergebnis: [1, 4, 9, 16, 25, 36, 49, 64, 81]
+
+    # Generator:
+
+    mygen  = (i**2 for i in range(1,10))
+
+    next(mygen)
+    # Ergebnis: 1
+
+    next(mygen)
+    # Ergebnis: 4
+
+    # ...
+
+Generatoren können auch verschachtelt auftreten; bestehende Generatoren können
+also zur Konstruktion neuer Generatoren verwendet werden:
+
+.. code-block:: python
+
+    # Neuen Generator mittels eines existierenden erzeugen:
+
+    mygen2 = (i**2 for i in mygen)
+
+    next(mygen2)
+    # Ergebnis: 81
+
+    next(mygen2)
+    # Ergebnis: 256
+
+Python kann diese Art von verschachtelten Generatoren sehr schnell auswerten, so
+dass Generatoren allgemein sehr gut für die Auswertung großer Datenströme
+geeignet sind. Zu beachten ist lediglich, dass der Generator bei jedem Aufruf --
+ähnlich wie eine Funktion -- einen Rückgabewert liefert, der von sich aus nicht 
+im Speicher verbleibt, sondern entweder unmittelbar weiter verarbeitet oder
+manuell gespeichert werden muss.
+
+
 
 

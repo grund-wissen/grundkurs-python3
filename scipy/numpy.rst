@@ -88,12 +88,18 @@ wiederum optional der Datentyp der einzelnen Elemente:
     # array([[0, 0, 0],
     #    [0, 0, 0]])
 
-Zudem kann mittels der Funktion ``arange()`` ein Array auf Grundlage eines
-Zahlenbereichs erstellt werden:
+.. _numpy.arange():
+
+.. rubric:: Eindimensionale Arrays mittels ``arange()`` und ``linspace()``
+
+Mittels der Funktion ``arange()`` kann ein (eindimensionales) Numpy-Array auf
+Grundlage eines Zahlenbereichs erstellt werden:
 
 .. code-block:: python
 
-    # Numpy-Array aus Zahlenbereich erstellen:
+    # Numpy-Array aus Zahlenbereich mit angegebener Schrittweite erstellen:
+    # Syntax: np.arange(start, stop, step)
+
     r = np.arange(0, 10, 0.1)
 
     r
@@ -113,6 +119,50 @@ Die Funktion ``arange()`` verhält sich also genauso wie die Funktion
 :ref:`range() <range()>`, liefert allerdings ein Numpy-Array mit den
 entsprechenden Werten als Ergebnis zurück. [#]_
 
+.. _numpy.linspace():
+
+Eine zweite, sehr ähnliche Möglichkeit zur Erstellung eines Numpy-Arrays bietet
+die Funktion ``linspace()``: Bei dieser wird allerdings die Anzahl der Schritte
+zwischen dem Start- und dem Endwert angegeben; die Schrittweite wird dann
+automatisch berechnet.
+
+.. code-block:: python
+
+    # Numpy-Array aus Zahlenbereich mit angegebener Listen-Länge erstellen:
+    # Syntax: np.arange(start, stop, num)
+
+    l = np.linspace(0, 10, 100, endpoint=True)
+
+    l
+    # Ergebnis:
+    # array([  0.        ,   0.1010101 ,   0.2020202 ,   0.3030303 ,
+    #      0.4040404 ,   0.50505051,   0.60606061,   0.70707071,
+    #      0.80808081,   0.90909091,   1.01010101,   1.11111111,
+    #      1.21212121,   1.31313131,   1.41414141,   1.51515152,
+    #      1.61616162,   1.71717172,   1.81818182,   1.91919192,
+    #      2.02020202,   2.12121212,   2.22222222,   2.32323232,
+    #      2.42424242,   2.52525253,   2.62626263,   2.72727273,
+    #      2.82828283,   2.92929293,   3.03030303,   3.13131313,
+    #      3.23232323,   3.33333333,   3.43434343,   3.53535354,
+    #      3.63636364,   3.73737374,   3.83838384,   3.93939394,
+    #      4.04040404,   4.14141414,   4.24242424,   4.34343434,
+    #      4.44444444,   4.54545455,   4.64646465,   4.74747475,
+    #      4.84848485,   4.94949495,   5.05050505,   5.15151515,
+    #      5.25252525,   5.35353535,   5.45454545,   5.55555556,
+    #      5.65656566,   5.75757576,   5.85858586,   5.95959596,
+    #      6.06060606,   6.16161616,   6.26262626,   6.36363636,
+    #      6.46464646,   6.56565657,   6.66666667,   6.76767677,
+    #      6.86868687,   6.96969697,   7.07070707,   7.17171717,
+    #      7.27272727,   7.37373737,   7.47474747,   7.57575758,
+    #      7.67676768,   7.77777778,   7.87878788,   7.97979798,
+    #      8.08080808,   8.18181818,   8.28282828,   8.38383838,
+    #      8.48484848,   8.58585859,   8.68686869,   8.78787879,
+    #      8.88888889,   8.98989899,   9.09090909,   9.19191919,
+    #      9.29292929,   9.39393939,   9.49494949,   9.5959596 ,
+    #      9.6969697 ,   9.7979798 ,   9.8989899 ,  10.        ])
+
+Setzt man im obigen Beispiel ``endpoint=False``, so ist das mit ``linspace()``
+erzeugte Array ``l`` mit dem Array ``r`` aus dem vorherigen Beispiel identisch.
 
 .. _Inhalte von Numpy-Arrays abrufen und verändern:
 
@@ -284,6 +334,15 @@ Für Matrix-Arrays existieren zusätzlich die Numpy-Funktionen ``dot()``,
 <gwm:Multiplikation zweier Matrizen>` beziehungsweise Vektoren durchgeführt werden können.
 
 ... to be continued ...
+
+.. rubric:: Links
+
+* `Numpy-Tutorial (en.) von Nicolas P. Rougier
+  <http://www.labri.fr/perso/nrougier/teaching/numpy/numpy.html>`__
+* `100 Numpy Exercises (en.)
+  <http://www.labri.fr/perso/nrougier/teaching/numpy.100/index.html>`__
+
+
 
 .. raw:: html
 
